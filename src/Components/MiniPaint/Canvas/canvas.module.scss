@@ -1,0 +1,16 @@
+@import "/src/constants/variables.scss";
+
+.canvas {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+canvas {
+  border: 1px solid $darkColor;
+  background-color: $imageColor;
+}
