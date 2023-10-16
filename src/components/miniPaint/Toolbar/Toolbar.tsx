@@ -1,19 +1,19 @@
 import React from "react";
 import styles from "./toolbar.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Brush from "tools/Brush";
 import { setTool } from "store/slices/canvasSlice";
 import Rectangle from "tools/Rectangle";
 import Circle from "tools/Circle";
 import Eraser from "tools/Eraser";
 import Line from "tools/Line";
-import { IState } from "constants/interfacesIState";
 import Ellipse from "tools/Ellipse";
 import Star from "tools/Star";
 import Polygon from "tools/Polygon";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const Toolbar = () => {
-  const { canvas } = useSelector((state: IState) => state.canvas);
+  const { canvas } = useAppSelector(state => state.canvas);
   const dispatch = useDispatch();
 
   const handleClickSetBrush = () => {

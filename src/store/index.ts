@@ -32,3 +32,5 @@ function* rootSaga() {
 }
 
 saga.run(rootSaga);
+
+export type RootState = ReturnType<typeof store.getState>;

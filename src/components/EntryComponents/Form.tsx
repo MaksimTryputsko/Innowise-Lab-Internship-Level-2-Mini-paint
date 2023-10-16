@@ -1,4 +1,5 @@
-import { Button } from "Components/Shared/Button";
+import { Button } from "components/shared/Button";
+import { Input } from "components/shared/Input";
 import React, { useState } from "react";
 
 interface IFormProps {
@@ -9,21 +10,31 @@ interface IFormProps {
 const Form = ({ title, handleClick }: IFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const onChangeEmail = (text: string) => {
+    setEmail(text);
+  };
+  const onChangePassword = (text: string) => {
+    setPassword(text);
+  };
+  const handleClickButton = () => {
+    handleClick(email, password);
+  };
+
   return (
     <div>
-      <input
+      <Input
         type="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
         placeholder="email"
+        onChange={onChangeEmail}
       />
-      <input
+      <Input
         type="password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={onChangePassword}
         placeholder="password"
       />
-      <Button onClick={() => handleClick(email, password)}> {title}</Button>
+      <Button onClick={handleClickButton}> {title}</Button>
     </div>
   );
 };

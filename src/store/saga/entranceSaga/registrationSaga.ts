@@ -5,6 +5,7 @@ import {
 } from "store/slices/userSlices";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { IActionEntrySaga } from "./loginSaga";
+import { errorProcessingRegistration } from "functions/errorProcessing/errorProcessingRegistration";
 
 export function* registrationSaga(action: IActionEntrySaga): unknown {
   const { email, password } = action.payload;
@@ -25,17 +26,7 @@ export function* registrationSaga(action: IActionEntrySaga): unknown {
     });
     yield put(setUser(registrationUser));
   } catch (err) {
-    if ((err as Error).message === "Firebase: Error (auth/invalid-email).") {
-      return alert("Your email is invalid, pease write correct e-mail !");
-    }
-    if (
-      (err as Error).message === "Firebase: Error (auth/email-already-in-use)."
-    ) {
-      return alert("This email already use, try with other e-mail !");
-    }
-    return alert(
-      "Change password please, your password mast have minimum 9 symbols !",
-    );
+    errorProcessingRegistration((err as Error).message);
   }
 }
 

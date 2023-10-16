@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IStateCanvas } from "constants/interfacesIState";
+import { ICanvas } from "constants/interfaces";
 
-const initialState: IStateCanvas = {
+const initialState: ICanvas = {
   canvas: null,
   tool: null,
   color: "black",

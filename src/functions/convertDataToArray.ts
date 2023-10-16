@@ -1,11 +1,11 @@
-import { IStateImages } from "constants/interfacesIState";
+import { IImages } from "constants/interfaces";
 import { dateSort } from "./sortArrayDate";
 
-export const convertDataToArray = (data: any) => {
-  const newTest = data.map((el: any) => Object.entries(el));
-  const imagesArray: IStateImages[] = [];
-  newTest.forEach((el: any) => el.map((el: any) => imagesArray.push(el[1])));
-  const filterImagesArray = imagesArray.filter(el => typeof el !== "string");
-  const sortedImagesArray = filterImagesArray.sort(dateSort);
+export const convertDataToArray = (data: Record<string, IImages>[]) => {
+  const dataToArray = data.map(el =>
+    Object.values(el).filter((el2, i) => i !== Object.values(el).length - 1),
+  );
+  const result = dataToArray.flat();
+  const sortedImagesArray = result.sort(dateSort);
   return sortedImagesArray;
 };

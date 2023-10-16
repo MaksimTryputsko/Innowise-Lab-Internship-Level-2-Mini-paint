@@ -1,12 +1,13 @@
-import { IState } from "constants/interfacesIState";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./filterUsers.module.scss";
 import { filterUsers } from "functions/filterUser";
 import { loadingImagesForUserFromTheServer } from "store/slices/ImagesCollectionSlice";
+import { Input } from "components/shared/Input";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const FilterUsers = () => {
-  const { users } = useSelector((state: IState) => state.imagesCollection);
+  const { users } = useAppSelector(state => state.imagesCollection);
   const dispatch = useDispatch();
   const [usersList, setUsersList] = useState(users);
   const [searchUser, setSearchUser] = useState("");
@@ -19,8 +20,8 @@ const FilterUsers = () => {
     return () => clearTimeout(Debounce);
   }, [searchUser]);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchUser(e.target.value);
+  const handleOnChange = (value: string) => {
+    setSearchUser(value);
   };
 
   const handleClickSetUser = (email: string) => {
@@ -30,8 +31,7 @@ const FilterUsers = () => {
 
   return (
     <div className={styles.wrapperForSearchUserBlock}>
-      <input
-        className={styles.searchInput}
+      <Input
         type="text"
         value={searchUser}
         onChange={handleOnChange}

@@ -26,6 +26,7 @@ export function* getUsersImagesSaga(
       }));
       return filterData;
     });
+ 
     yield put(
       getImages(
         convertDataWithUserToUserImgArray(getImagesCollection, action.payload),

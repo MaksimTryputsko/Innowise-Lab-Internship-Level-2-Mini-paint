@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IImages {
   id: string;
   image: string;
+  email: string;
 }
 
 interface IStateImageCollection {

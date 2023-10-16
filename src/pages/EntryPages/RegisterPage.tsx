@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./entry.module.scss";
 import { Link } from "react-router-dom";
 import { LOGIN_PAGE } from "constants/addressPages";
-import { SignUp } from "Components/EntryComponents/SignUp";
-import { Button } from "Components/Shared/Button";
+import { SignUp } from "components/EntryComponents/SignUp";
+import { Button } from "components/shared/Button";
 
 const RegisterPage = () => {
   return (

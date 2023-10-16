@@ -1,14 +1,14 @@
-import { useAuthor } from "hooks/useAuthor";
+import { useAuth } from "hooks/useAuth";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { removeUser } from "store/slices/userSlices";
 import styles from "./header.module.scss";
-import { Button } from "Components/Shared/Button";
+import { Button } from "components/shared/Button";
 import { handleClickChangeTheme } from "functions/changeTheme";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { email } = useAuthor();
+  const { email } = useAuth();
   const handleClickExit = () => {
     dispatch(removeUser());
   };

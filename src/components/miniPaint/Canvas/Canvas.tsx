@@ -5,17 +5,18 @@ import { setCanvas } from "store/slices/canvasSlice";
 import Brush from "tools/Brush";
 import { setTool } from "../../../store/slices/canvasSlice";
 
-import { SaveToGallery } from "Components/SaveToGallery/SaveToGallery";
+import { SaveToGallery } from "components/SaveToGallery/SaveToGallery";
 
 const Canvas = () => {
   const canvasRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setCanvas(canvasRef.current));
-    if (canvasRef.current) {
-      dispatch(setTool(new Brush(canvasRef.current)));
+    if (!canvasRef.current) {
+      return;
     }
+    dispatch(setCanvas(canvasRef.current));
+    dispatch(setTool(new Brush(canvasRef.current)));
   }, []);
 
   return (

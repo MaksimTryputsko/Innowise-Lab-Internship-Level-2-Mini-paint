@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadingImagesFromTheServer } from "store/slices/ImagesCollectionSlice";
 import styles from "./imagesSlider.module.scss";
-import { IState } from "constants/interfacesIState";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const ImagesSlider = () => {
   const dispatch = useDispatch();
-  const { images } = useSelector((state: IState) => state.imagesCollection);
+  const { images } = useAppSelector(state => state.imagesCollection);
 
   useEffect(() => {
     dispatch(loadingImagesFromTheServer(IMAGES_COLLECTION));

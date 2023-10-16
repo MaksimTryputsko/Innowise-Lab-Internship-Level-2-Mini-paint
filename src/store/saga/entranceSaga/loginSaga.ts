@@ -4,6 +4,7 @@ import {
   setUser,
 } from "store/slices/userSlices";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { errorProcessingLogin } from "functions/errorProcessing/errorProcessingLogin";
 
 interface IActionEntrySagaPayload {
   email: string;
@@ -32,16 +33,7 @@ export function* loginSaga(action: IActionEntrySaga): unknown {
     });
     yield put(setUser(loginUser));
   } catch (err) {
-    if ((err as Error).message === "Firebase: Error (auth/invalid-email).") {
-      return alert("Your email is invalid, pease write correct e-mail !");
-    }
-    if (
-      (err as Error).message ===
-      "Firebase: Error (auth/invalid-login-credentials)."
-    ) {
-      return alert("Please write correct data !");
-    }
-    return alert("Please, try later");
+    errorProcessingLogin((err as Error).message);
   }
 }
 
