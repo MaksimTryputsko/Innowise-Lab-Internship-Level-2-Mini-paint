@@ -6,6 +6,7 @@ import {
   setImageToServer,
 } from "store/slices/ImagesCollectionSlice";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
+import toast from "react-hot-toast";
 
 interface IActionSetImageSagaPayload {
   imgURL: string;
@@ -32,7 +33,7 @@ export function* setImageToServerSaga(action: IActionSetImageSaga): unknown {
     );
     yield put(loadingImagesFromTheServer(IMAGES_COLLECTION));
   } catch (err) {
-    console.log(err);
+    toast.error("Sorry we have problem with server !");
   }
 }
 

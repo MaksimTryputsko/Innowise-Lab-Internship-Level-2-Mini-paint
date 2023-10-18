@@ -32,12 +32,12 @@ const FilterUsers = () => {
   return (
     <div className={styles.wrapperForSearchUserBlock}>
       <Input
-        type="text"
+        variant="outlined"
         value={searchUser}
         onChange={handleOnChange}
         placeholder="Search author"
       />
-      {searchUser.length > 0 && usersList && (
+      {Boolean(searchUser.length) && usersList && (
         <ul className={styles.userListBlock}>
           {usersList.map(el => (
             <li key={Math.random()} onClick={() => handleClickSetUser(el)}>

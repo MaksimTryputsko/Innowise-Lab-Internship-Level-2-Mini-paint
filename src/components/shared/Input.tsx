@@ -1,22 +1,24 @@
 import React from "react";
+import InputMUI from "@mui/joy/Input";
 
 interface IPropsInput {
-  type: string;
+  variant: "outlined" | "solid" | "soft" | "plain";
   value?: string;
   onChange: (text: string) => void;
   placeholder?: string;
 }
 
-const Input = ({ type, value, onChange, placeholder }: IPropsInput) => {
+const Input = ({ variant, value, onChange, placeholder }: IPropsInput) => {
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
   return (
-    <input
-      type={type}
+    <InputMUI
+      placeholder={placeholder}
+      variant={variant}
+      color="neutral"
       value={value}
       onChange={onChangeInput}
-      placeholder={placeholder}
     />
   );
 };

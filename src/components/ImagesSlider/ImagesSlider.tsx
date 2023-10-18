@@ -15,7 +15,7 @@ const ImagesSlider = () => {
 
   return (
     <div className={styles.wrapperForSliderImages}>
-      {images.length > 0 &&
+      {Boolean(images.length) &&
         images.map(el => {
           return (
             <div key={el.id} className={styles.wrapperForImage}>

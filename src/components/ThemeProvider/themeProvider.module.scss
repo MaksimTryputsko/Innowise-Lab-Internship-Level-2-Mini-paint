@@ -1,0 +1,26 @@
+@import "/src/constants/variables.scss";
+
+.default {
+  background-color: $bodyColor;
+}
+
+.light {
+  --dark-color: black;
+  --body-color: #e5cff7;
+  --light-white: #f8f0e5;
+  --white-color: white;
+  --box-shadow-color: grey;
+  --header-color: #facbea;
+  --image-color: white;
+  --value-color: #9c27b0;
+}
+.dark {
+  --dark-color: rgb(135, 247, 195);
+  --body-color: #3b3144;
+  --light-white: #8c5912;
+  --white-color: rgb(145, 84, 84);
+  --box-shadow-color: rgb(88, 42, 42);
+  --header-color: #e5cff7;
+  --image-color: white;
+  --value-color: #250b29;
+}

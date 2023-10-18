@@ -23,13 +23,13 @@ const Form = ({ title, handleClick }: IFormProps) => {
   return (
     <div>
       <Input
-        type="email"
+        variant="outlined"
         value={email}
         placeholder="email"
         onChange={onChangeEmail}
       />
       <Input
-        type="password"
+        variant="outlined"
         value={password}
         onChange={onChangePassword}
         placeholder="password"

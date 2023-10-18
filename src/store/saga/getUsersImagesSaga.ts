@@ -7,6 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { dataBase } from "../../firebase";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
 import { convertDataWithUserToUserImgArray } from "functions/convertDataWithUserToUserImgArray";
+import toast from "react-hot-toast";
 
 export interface IActionGetUsersImagesSaga {
   type: string;
@@ -26,14 +27,14 @@ export function* getUsersImagesSaga(
       }));
       return filterData;
     });
- 
+
     yield put(
       getImages(
         convertDataWithUserToUserImgArray(getImagesCollection, action.payload),
       ),
     );
   } catch (err) {
-    console.error(err);
+    toast.error("Sorry we have problem with server !");
   }
 }
 

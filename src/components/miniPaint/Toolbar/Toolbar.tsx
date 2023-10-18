@@ -16,48 +16,37 @@ const Toolbar = () => {
   const { canvas } = useAppSelector(state => state.canvas);
   const dispatch = useDispatch();
 
+  if (!canvas) {
+    return null;
+  }
+
   const handleClickSetBrush = () => {
-    if (canvas) {
-      dispatch(setTool(new Brush(canvas)));
-    }
+    dispatch(setTool(new Brush(canvas)));
   };
 
   const handleClickSetRectangle = () => {
-    if (canvas) {
-      dispatch(setTool(new Rectangle(canvas)));
-    }
+    dispatch(setTool(new Rectangle(canvas)));
   };
 
   const handleClickSetCircle = () => {
-    if (canvas) {
-      dispatch(setTool(new Circle(canvas)));
-    }
+    dispatch(setTool(new Circle(canvas)));
   };
   const handleClickSetEraser = () => {
-    if (canvas) {
-      dispatch(setTool(new Eraser(canvas)));
-    }
+    dispatch(setTool(new Eraser(canvas)));
   };
   const handleClickSetLine = () => {
-    if (canvas) {
-      dispatch(setTool(new Line(canvas)));
-    }
+    dispatch(setTool(new Line(canvas)));
   };
   const handleClickSetEllipse = () => {
-    if (canvas) {
-      dispatch(setTool(new Ellipse(canvas)));
-    }
+    dispatch(setTool(new Ellipse(canvas)));
   };
   const handleClickSetStar = () => {
-    if (canvas) {
-      dispatch(setTool(new Star(canvas)));
-    }
+    dispatch(setTool(new Star(canvas)));
   };
   const handleClickSetPolygon = () => {
-    if (canvas) {
-      dispatch(setTool(new Polygon(canvas)));
-    }
+    dispatch(setTool(new Polygon(canvas)));
   };
+
   return (
     <div className={styles.toolbar}>
       <button className={styles.brush} onClick={handleClickSetBrush}></button>

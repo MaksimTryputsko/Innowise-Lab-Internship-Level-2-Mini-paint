@@ -19,14 +19,12 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    input {
+      height: 8px;
+      padding-left: 0px;
+    }
   }
 }
 .countBlock {
   padding-left: 20px;
-}
-
-.numberInput {
-  border: 2px solid $darkColor;
-  border-radius: 5px;
-  height: 20px;
 }
