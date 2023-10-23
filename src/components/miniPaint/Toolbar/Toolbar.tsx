@@ -31,18 +31,23 @@ const Toolbar = () => {
   const handleClickSetCircle = () => {
     dispatch(setTool(new Circle(canvas)));
   };
+
   const handleClickSetEraser = () => {
     dispatch(setTool(new Eraser(canvas)));
   };
+
   const handleClickSetLine = () => {
     dispatch(setTool(new Line(canvas)));
   };
+
   const handleClickSetEllipse = () => {
     dispatch(setTool(new Ellipse(canvas)));
   };
+
   const handleClickSetStar = () => {
     dispatch(setTool(new Star(canvas)));
   };
+
   const handleClickSetPolygon = () => {
     dispatch(setTool(new Polygon(canvas)));
   };

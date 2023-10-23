@@ -22,11 +22,12 @@ export default class Circle extends Tool {
   }
 
   mouseDownHandler(e: MouseEvent) {
+    if (!this.ctx) {
+      return;
+    }
     this.mouseDown = true;
     const canvasData = this.canvas.toDataURL();
-    if (this.ctx) {
-      this.ctx.beginPath();
-    }
+    this.ctx.beginPath();
     this.startX = e.pageX - (e.target as HTMLElement).offsetLeft;
     this.startY = e.pageY - (e.target as HTMLElement).offsetTop;
     this.saved = canvasData;
@@ -37,27 +38,29 @@ export default class Circle extends Tool {
   }
 
   mouseMoveHandler(e: MouseEvent) {
-    if (this.mouseDown) {
-      const curentX = e.pageX - (e.target as HTMLElement).offsetLeft;
-      const curentY = e.pageY - (e.target as HTMLElement).offsetTop;
-      const width = curentX - this.startX;
-      const height = curentY - this.startY;
-      const radius = Math.sqrt(width ** 2 + height ** 2);
-      this.draw(this.startX, this.startY, radius);
+    if (!this.mouseDown) {
+      return;
     }
+    const curentX = e.pageX - (e.target as HTMLElement).offsetLeft;
+    const curentY = e.pageY - (e.target as HTMLElement).offsetTop;
+    const width = curentX - this.startX;
+    const height = curentY - this.startY;
+    const radius = Math.sqrt(width ** 2 + height ** 2);
+    this.draw(this.startX, this.startY, radius);
   }
 
   draw(x: number, y: number, radius: number) {
     const img = new Image();
     img.src = this.saved;
     img.onload = async () => {
-      if (this.ctx) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
-        this.ctx.stroke();
+      if (!this.ctx) {
+        return;
       }
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.beginPath();
+      this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      this.ctx.stroke();
     };
   }
 }

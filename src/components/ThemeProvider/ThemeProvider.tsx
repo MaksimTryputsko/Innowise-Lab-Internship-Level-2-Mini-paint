@@ -30,6 +30,7 @@ const ThemeProvider = ({ children }: IPropsThemeProvider) => {
 
   const changeTheme = () => {
     setTheme(theme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME);
+
     localStorage.setItem(
       KEY_THEME_LOCALSTORAGE,
       theme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME,
@@ -44,6 +45,7 @@ const ThemeProvider = ({ children }: IPropsThemeProvider) => {
     if (!attributeFromLocalStorage) {
       return setTheme(LIGHT_THEME);
     }
+
     return setTheme(attributeFromLocalStorage);
   }, []);
 

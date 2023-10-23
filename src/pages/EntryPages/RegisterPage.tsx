@@ -15,7 +15,7 @@ const RegisterPage = () => {
       <div className={styles.blockChangePage}>
         <span>Already have account ?</span>
         <Link to={LOGIN_PAGE}>
-          <Button>Sign in</Button>
+          <Button variant="outlined">Sign in</Button>
         </Link>
       </div>
     </div>

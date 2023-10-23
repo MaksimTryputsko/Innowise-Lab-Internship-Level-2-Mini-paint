@@ -16,12 +16,17 @@ const Header = () => {
     dispatch(removeUser());
   };
   const { changeTheme } = useThemeContext() as IThemeContext;
+
   return (
     <header className={styles.header}>
       <h1>Hello {email}</h1>
       <div>
-        <Button onClick={changeTheme}>Change Theme</Button>
-        <Button onClick={handleClickExit}>EXIT</Button>
+        <Button onClick={changeTheme} variant="outlined">
+          Change Theme
+        </Button>
+        <Button onClick={handleClickExit} variant="outlined">
+          EXIT
+        </Button>
       </div>
     </header>
   );

@@ -34,7 +34,9 @@ const Form = ({ title, handleClick }: IFormProps) => {
         onChange={onChangePassword}
         placeholder="password"
       />
-      <Button onClick={handleClickButton}> {title}</Button>
+      <Button onClick={handleClickButton} variant="outlined">
+        {title}
+      </Button>
     </div>
   );
 };

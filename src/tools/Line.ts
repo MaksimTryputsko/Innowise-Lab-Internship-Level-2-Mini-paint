@@ -1,7 +1,6 @@
 import Tool from "./Tool";
 
 export default class Line extends Tool {
-  name: string;
   mouseDown: boolean;
   currentX: number;
   currentY: number;
@@ -10,7 +9,6 @@ export default class Line extends Tool {
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
     this.listen();
-    this.name = "Line";
     this.mouseDown = false;
     this.currentX = 0;
     this.currentY = 0;
@@ -24,14 +22,15 @@ export default class Line extends Tool {
   }
 
   mouseDownHandler(e: MouseEvent) {
-    if (this.ctx) {
-      this.mouseDown = true;
-      this.currentX = e.pageX - (e.target as HTMLElement).offsetLeft;
-      this.currentY = e.pageY - (e.target as HTMLElement).offsetTop;
-      this.ctx.beginPath();
-      this.ctx.moveTo(this.currentX, this.currentY);
-      this.saved = this.canvas.toDataURL();
+    if (!this.ctx) {
+      return;
     }
+    this.mouseDown = true;
+    this.currentX = e.pageX - (e.target as HTMLElement).offsetLeft;
+    this.currentY = e.pageY - (e.target as HTMLElement).offsetTop;
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.currentX, this.currentY);
+    this.saved = this.canvas.toDataURL();
   }
 
   mouseUpHandler() {
@@ -39,26 +38,28 @@ export default class Line extends Tool {
   }
 
   mouseMoveHandler(e: MouseEvent) {
-    if (this.mouseDown) {
-      this.draw(
-        e.pageX - (e.target as HTMLElement).offsetLeft,
-        e.pageY - (e.target as HTMLElement).offsetTop,
-      );
+    if (!this.mouseDown) {
+      return;
     }
+    this.draw(
+      e.pageX - (e.target as HTMLElement).offsetLeft,
+      e.pageY - (e.target as HTMLElement).offsetTop,
+    );
   }
 
   draw(x: number, y: number) {
     const img = new Image();
     img.src = this.saved;
     img.onload = async () => {
-      if (this.ctx) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.currentX, this.currentY);
-        this.ctx.lineTo(x, y);
-        this.ctx.stroke();
+      if (!this.ctx) {
+        return;
       }
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.currentX, this.currentY);
+      this.ctx.lineTo(x, y);
+      this.ctx.stroke();
     };
   }
 }

@@ -13,17 +13,19 @@ const ImagesSlider = () => {
     dispatch(loadingImagesFromTheServer(IMAGES_COLLECTION));
   }, []);
 
+  if (!images.length) {
+    return null;
+  }
   return (
     <div className={styles.wrapperForSliderImages}>
-      {Boolean(images.length) &&
-        images.map(el => {
-          return (
-            <div key={el.id} className={styles.wrapperForImage}>
-              <h2>{el.email}</h2>
-              <img src={el.image} alt="logo" />
-            </div>
-          );
-        })}
+      {images.map(el => {
+        return (
+          <div key={el.id} className={styles.wrapperForImage}>
+            <h2>{el.email}</h2>
+            <img src={el.image} alt="logo" />
+          </div>
+        );
+      })}
     </div>
   );
 };

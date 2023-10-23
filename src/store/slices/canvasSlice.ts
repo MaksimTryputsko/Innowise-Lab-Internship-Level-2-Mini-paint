@@ -13,23 +13,26 @@ const canvasSlices = createSlice({
   reducers: {
     setTool: (state, action) => {
       state.tool = action.payload;
-      if (state.tool) {
-        state.tool.strokeColor = state.color;
+      if (!state.tool) {
+        return;
       }
+      state.tool.strokeColor = state.color;
     },
     setCanvas: (state, action) => {
       state.canvas = action.payload;
     },
     setLineWidth(state, action) {
-      if (state.tool) {
-        state.tool.lineWidth = action.payload;
+      if (!state.tool) {
+        return;
       }
+      state.tool.lineWidth = action.payload;
     },
     setStrokeColor(state, action) {
-      if (state.tool) {
-        state.color = action.payload;
-        state.tool.strokeColor = action.payload;
+      if (!state.tool) {
+        return;
       }
+      state.color = action.payload;
+      state.tool.strokeColor = action.payload;
     },
   },
 });

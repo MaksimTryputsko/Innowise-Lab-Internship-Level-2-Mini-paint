@@ -15,7 +15,7 @@ const LoginPage = () => {
       <div className={styles.blockChangePage}>
         <span>You don&#8217;t have account ?</span>
         <Link to={REGISTER_PAGE}>
-          <Button>Register</Button>
+          <Button variant="outlined">Register</Button>
         </Link>
       </div>
     </div>

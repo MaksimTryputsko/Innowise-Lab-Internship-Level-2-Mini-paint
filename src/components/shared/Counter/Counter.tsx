@@ -4,6 +4,7 @@ import styles from "./counter.module.scss";
 interface IPropsCounter {
   handleClick: (value: number) => void;
 }
+
 const Counter = ({ handleClick }: IPropsCounter) => {
   const [count, setCount] = useState(1);
 
@@ -20,6 +21,7 @@ const Counter = ({ handleClick }: IPropsCounter) => {
       handleClick(count - 1);
     }
   };
+
   return (
     <div className={styles.countLineWidth}>
       <button onClick={handleClickMinus}>-</button>

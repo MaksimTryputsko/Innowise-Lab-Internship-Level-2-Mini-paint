@@ -6,21 +6,20 @@ export default class Tool {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.destroyEvents();
-    // if (this.ctx) {
-    //   this.ctx.strokeStyle = "black";
-    // }
   }
 
   set strokeColor(color: string) {
-    if (this.ctx) {
-      this.ctx.strokeStyle = color;
+    if (!this.ctx) {
+      return;
     }
+    this.ctx.strokeStyle = color;
   }
 
   set lineWidth(width: number) {
-    if (this.ctx) {
-      this.ctx.lineWidth = width;
+    if (!this.ctx) {
+      return;
     }
+    this.ctx.lineWidth = width;
   }
 
   destroyEvents() {

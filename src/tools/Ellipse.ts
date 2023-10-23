@@ -22,11 +22,13 @@ export default class Ellipse extends Tool {
   }
 
   mouseDownHandler(e: MouseEvent) {
+    if (!this.ctx) {
+      return;
+    }
+
     this.mouseDown = true;
     const canvasData = this.canvas.toDataURL();
-    if (this.ctx) {
-      this.ctx.beginPath();
-    }
+    this.ctx.beginPath();
     this.startX = e.pageX - (e.target as HTMLElement).offsetLeft;
     this.startY = e.pageY - (e.target as HTMLElement).offsetTop;
     this.saved = canvasData;
@@ -37,22 +39,23 @@ export default class Ellipse extends Tool {
   }
 
   mouseMoveHandler(e: MouseEvent) {
-    if (this.mouseDown) {
-      const curentX = e.pageX - (e.target as HTMLElement).offsetLeft;
-      const curentY = e.pageY - (e.target as HTMLElement).offsetTop;
-      const width = curentX - this.startX;
-      const height = curentY - this.startY;
+    if (!this.mouseDown) {
+      return;
+    }
+    const curentX = e.pageX - (e.target as HTMLElement).offsetLeft;
+    const curentY = e.pageY - (e.target as HTMLElement).offsetTop;
+    const width = curentX - this.startX;
+    const height = curentY - this.startY;
 
-      if (Math.abs(height) > Math.abs(width)) {
-        const radiusX = Math.sqrt(width ** 2 + height ** 2) / 2;
-        const radiusY = Math.sqrt(width ** 2 + height ** 2);
-        this.draw(this.startX, this.startY, radiusX, radiusY);
-      }
-      if (Math.abs(height) < Math.abs(width)) {
-        const radiusX = Math.sqrt(width ** 2 + height ** 2);
-        const radiusY = Math.sqrt(width ** 2 + height ** 2) / 2;
-        this.draw(this.startX, this.startY, radiusX, radiusY);
-      }
+    if (Math.abs(height) > Math.abs(width)) {
+      const radiusX = Math.sqrt(width ** 2 + height ** 2) / 2;
+      const radiusY = Math.sqrt(width ** 2 + height ** 2);
+      this.draw(this.startX, this.startY, radiusX, radiusY);
+    }
+    if (Math.abs(height) < Math.abs(width)) {
+      const radiusX = Math.sqrt(width ** 2 + height ** 2);
+      const radiusY = Math.sqrt(width ** 2 + height ** 2) / 2;
+      this.draw(this.startX, this.startY, radiusX, radiusY);
     }
   }
 
@@ -60,13 +63,14 @@ export default class Ellipse extends Tool {
     const img = new Image();
     img.src = this.saved;
     img.onload = async () => {
-      if (this.ctx) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.beginPath();
-        this.ctx.ellipse(x, y, radiusX, radiusY, 0, 0, Math.PI * 2);
-        this.ctx.stroke();
+      if (!this.ctx) {
+        return;
       }
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.beginPath();
+      this.ctx.ellipse(x, y, radiusX, radiusY, 0, 0, Math.PI * 2);
+      this.ctx.stroke();
     };
   }
 }

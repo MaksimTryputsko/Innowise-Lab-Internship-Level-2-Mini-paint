@@ -29,7 +29,11 @@ const SaveToGallery = () => {
     );
   };
 
-  return <Button onClick={handleClickSaveToSeverImage}>SAVE TO GALLERY</Button>;
+  return (
+    <Button onClick={handleClickSaveToSeverImage} variant="outlined">
+      SAVE TO GALLERY
+    </Button>
+  );
 };
 
 export { SaveToGallery };
