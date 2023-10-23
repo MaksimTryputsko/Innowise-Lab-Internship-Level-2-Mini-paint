@@ -1,14 +1,14 @@
 import createSagaMiddleware from "redux-saga";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlices";
-import { loginUserSaga } from "./saga/entranceSaga/loginSaga";
+import { loginUserSaga } from "./saga/entranceSaga/login";
 import { fork } from "redux-saga/effects";
-import { registrationSagaUser } from "./saga/entranceSaga/registrationSaga";
+import { registrationSagaUser } from "./saga/entranceSaga/registration";
 import canvasReducer from "./slices/canvasSlice";
 import imagesCollectionReducer from "./slices/ImagesCollectionSlice";
-import { imagesCollectionSaga } from "./saga/getImagesCollectionSaga";
-import { setImageSaga } from "./saga/setImageToServerSaga";
-import { userValueImagesSaga } from "./saga/getUsersImagesSaga";
+import { imagesCollectionSaga } from "./saga/getImagesCollection";
+import { setImageSaga } from "./saga/saveImageToServer";
+import { userValueImagesSaga } from "./saga/getUsersImages";
 
 const rootReducer = combineReducers({
   user: userReducer,

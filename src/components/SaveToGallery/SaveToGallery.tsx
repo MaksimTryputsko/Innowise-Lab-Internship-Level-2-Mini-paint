@@ -7,7 +7,7 @@ import { setImageToServer } from "store/slices/ImagesCollectionSlice";
 import { useAppSelector } from "hooks/useAppSelector";
 
 const SaveToGallery = () => {
-  const { id, email } = useAuth();
+  const { email } = useAuth();
   const dispatch = useDispatch();
   const { canvas } = useAppSelector(state => state.canvas);
 
@@ -20,8 +20,7 @@ const SaveToGallery = () => {
 
     dispatch(
       setImageToServer({
-        userId: id,
-        imgURL: canvas.toDataURL(),
+        image: canvas.toDataURL(),
         id: idForServer,
         email,
         datePublication: `${date}`,

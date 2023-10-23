@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Form } from "./Form";
@@ -11,6 +11,12 @@ const SignUp: React.FC = React.memo(() => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
 
+  useEffect(() => {
+    if (isAuth) {
+      navigate(HOME_PAGE);
+    }
+  });
+
   const handleRegister = (email: string, password: string) => {
     dispatch(
       loadingDataFromTheServerRegistrationUser({
@@ -20,9 +26,6 @@ const SignUp: React.FC = React.memo(() => {
     );
   };
 
-  if (isAuth) {
-    navigate(HOME_PAGE);
-  }
   return <Form title="register" handleClick={handleRegister} />;
 });
 

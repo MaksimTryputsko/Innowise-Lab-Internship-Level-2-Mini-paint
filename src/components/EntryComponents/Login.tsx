@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form } from "./Form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -10,16 +10,20 @@ const Login: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
-
+  useEffect(() => {
+    if (isAuth) {
+      navigate(HOME_PAGE);
+    }
+  });
   const handleLogin = (email: string, password: string) => {
     dispatch(
       loadingDataFromTheServerLoginUser({ email: email, password: password }),
     );
   };
 
-  if (isAuth) {
-    navigate(HOME_PAGE);
-  }
+  // if (isAuth) {
+  //   navigate(HOME_PAGE);
+  // }
   return <Form title="sign in" handleClick={handleLogin} />;
 });
 
