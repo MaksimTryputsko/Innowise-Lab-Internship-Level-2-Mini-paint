@@ -8,13 +8,13 @@ import { authService } from "services/authService";
 
 export function* registration(action: IActionEntrySaga): unknown {
   const { email, password } = action.payload;
-  const user = yield call(async () =>
+  const userFromDataBase = yield call(async () =>
     authService.registrationUser(email, password),
   );
-  if (!user) {
+  if (!userFromDataBase) {
     return;
   }
-  yield put(setUser(user));
+  yield put(setUser(userFromDataBase));
 }
 
 function* registrationSagaUser() {

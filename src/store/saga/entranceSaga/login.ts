@@ -16,11 +16,13 @@ export interface IActionEntrySaga {
 
 export function* login(action: IActionEntrySaga): unknown {
   const { email, password } = action.payload;
-  const user = yield call(async () => authService.loginUser(email, password));
-  if (!user) {
+  const userFromDataBase = yield call(async () =>
+    authService.loginUser(email, password),
+  );
+  if (!userFromDataBase) {
     return;
   }
-  yield put(setUser(user));
+  yield put(setUser(userFromDataBase));
 }
 
 function* loginUserSaga() {
