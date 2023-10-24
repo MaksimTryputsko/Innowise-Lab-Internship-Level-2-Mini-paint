@@ -10,21 +10,18 @@ const Login: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
+
   useEffect(() => {
     if (isAuth) {
       navigate(HOME_PAGE);
     }
   });
-  const handleLogin = (email: string, password: string) => {
-    dispatch(
-      loadingDataFromTheServerLoginUser({ email: email, password: password }),
-    );
+
+  const onUserLogIn = (email: string, password: string) => {
+    dispatch(loadingDataFromTheServerLoginUser({ email, password }));
   };
 
-  // if (isAuth) {
-  //   navigate(HOME_PAGE);
-  // }
-  return <Form title="sign in" handleClick={handleLogin} />;
+  return <Form title="sign in" onClick={onUserLogIn} />;
 });
 
 Login.displayName = "Login";

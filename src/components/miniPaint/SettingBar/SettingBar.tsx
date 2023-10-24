@@ -9,11 +9,11 @@ import { ColorInput } from "components/shared/ColorInput";
 const SettingBar = () => {
   const dispatch = useDispatch();
 
-  const changeColor = (value: string) => {
+  const onColorChange = (value: string) => {
     dispatch(setStrokeColor(value));
   };
 
-  const handleClickCounter = (value: number) => {
+  const onClickSetLineWidth = (value: number) => {
     dispatch(setLineWidth(value));
   };
 
@@ -21,11 +21,11 @@ const SettingBar = () => {
     <div className={styles.settingBar}>
       <div className={styles.countBlock}>
         <span>Set line width:</span>
-        <Counter handleClick={handleClickCounter} />
+        <Counter onClick={onClickSetLineWidth} />
       </div>
       <div>
         <span>Set color:</span>
-        <ColorInput onChange={changeColor} />
+        <ColorInput onChange={onColorChange} />
       </div>
     </div>
   );

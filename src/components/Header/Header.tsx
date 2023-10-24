@@ -12,19 +12,21 @@ import {
 const Header = () => {
   const dispatch = useDispatch();
   const { email } = useAuth();
-  const handleClickExit = () => {
+
+  const onUserRemove = () => {
     dispatch(removeUser());
   };
-  const { changeTheme } = useThemeContext() as IThemeContext;
+
+  const { onThemeChange } = useThemeContext() as IThemeContext;
 
   return (
     <header className={styles.header}>
       <h1>Hello {email}</h1>
       <div>
-        <Button onClick={changeTheme} variant="outlined">
+        <Button onClick={onThemeChange} variant="outlined">
           Change Theme
         </Button>
-        <Button onClick={handleClickExit} variant="outlined">
+        <Button onClick={onUserRemove} variant="outlined">
           EXIT
         </Button>
       </div>

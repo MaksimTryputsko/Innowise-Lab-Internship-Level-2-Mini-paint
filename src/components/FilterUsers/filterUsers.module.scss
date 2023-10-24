@@ -16,11 +16,13 @@
   position: absolute;
   top: 25px;
   font-size: 30px;
+
   li {
     background-color: $whiteColor;
     padding: 5px 12px;
     border: 1px solid $bodyColor;
   }
+
   li:hover {
     cursor: pointer;
     color: $valueColor;

@@ -2,31 +2,31 @@ import React, { useState } from "react";
 import styles from "./counter.module.scss";
 
 interface IPropsCounter {
-  handleClick: (value: number) => void;
+  onClick: (value: number) => void;
 }
 
-const Counter = ({ handleClick }: IPropsCounter) => {
-  const [count, setCount] = useState(1);
+const Counter = ({ onClick }: IPropsCounter) => {
+  const [counter, setCounter] = useState(1);
 
-  const handleClickPlus = () => {
-    if (count < 50) {
-      setCount(count + 1);
-      handleClick(count + 1);
+  const onCounterIncrease = () => {
+    if (counter < 50) {
+      setCounter(counter + 1);
+      onClick(counter + 1);
     }
   };
 
-  const handleClickMinus = () => {
-    if (count > 1) {
-      setCount(count - 1);
-      handleClick(count - 1);
+  const onCounterReduce = () => {
+    if (counter > 1) {
+      setCounter(counter - 1);
+      onClick(counter - 1);
     }
   };
 
   return (
-    <div className={styles.countLineWidth}>
-      <button onClick={handleClickMinus}>-</button>
-      <span>{count}</span>
-      <button onClick={handleClickPlus}>+</button>
+    <div className={styles.counterLineWidth}>
+      <button onClick={onCounterReduce}>-</button>
+      <span>{counter}</span>
+      <button onClick={onCounterIncrease}>+</button>
     </div>
   );
 };

@@ -7,25 +7,26 @@ import { Input } from "components/shared/Input";
 import { useAppSelector } from "hooks/useAppSelector";
 
 const FilterUsers = () => {
-  const { users } = useAppSelector(state => state.imagesCollection);
+  const { usersFromDataBase } = useAppSelector(state => state.imagesCollection);
   const dispatch = useDispatch();
-  const [usersList, setUsersList] = useState(users);
-  const [searchUser, setSearchUser] = useState("");
+  const [usersList, setUsersList] = useState(usersFromDataBase);
+  const [searchingUser, setSearchingUser] = useState("");
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
-      const filteredUser = filterUsers(searchUser, users);
-      setUsersList(filteredUser);
+      const filteredUsers = filterUsers(searchingUser, usersFromDataBase);
+      setUsersList(filteredUsers);
     }, 300);
-    return () => clearTimeout(Debounce);
-  }, [searchUser]);
 
-  const handleOnChange = (value: string) => {
-    setSearchUser(value);
+    return () => clearTimeout(Debounce);
+  }, [searchingUser]);
+
+  const onUserChange = (value: string) => {
+    setSearchingUser(value);
   };
 
-  const handleClickSetUser = (email: string) => {
-    setSearchUser("");
+  const onUserSet = (email: string) => {
+    setSearchingUser("");
     dispatch(loadingImagesForUserFromTheServer(email));
   };
 
@@ -33,15 +34,15 @@ const FilterUsers = () => {
     <div className={styles.wrapperForSearchUserBlock}>
       <Input
         variant="outlined"
-        value={searchUser}
-        onChange={handleOnChange}
+        value={searchingUser}
+        onChange={onUserChange}
         placeholder="Search author"
       />
-      {Boolean(searchUser.length) && usersList && (
+      {Boolean(searchingUser.length) && usersList && (
         <ul className={styles.userListBlock}>
-          {usersList.map(el => (
-            <li key={Math.random()} onClick={() => handleClickSetUser(el)}>
-              {el}
+          {usersList.map(user => (
+            <li key={user} onClick={() => onUserSet(user)}>
+              {user}
             </li>
           ))}
         </ul>

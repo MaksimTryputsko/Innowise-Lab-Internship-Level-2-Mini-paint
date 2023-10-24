@@ -16,13 +16,14 @@ const ImagesSlider = () => {
   if (!images.length) {
     return null;
   }
+
   return (
     <div className={styles.wrapperForSliderImages}>
-      {images.map(el => {
+      {images.map(image => {
         return (
-          <div key={el.id} className={styles.wrapperForImage}>
-            <h2>{el.email}</h2>
-            <img src={el.image} alt="logo" />
+          <div key={image.id} className={styles.wrapperForImage}>
+            <h2>{image.email}</h2>
+            <img src={image.image} alt="logo" />
           </div>
         );
       })}

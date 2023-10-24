@@ -10,15 +10,18 @@
   box-shadow: 0 4px 5px $boxShadowGrey;
   display: flex;
   gap: 20px;
+
   div {
     span {
       font-size: 25px;
       font-weight: bold;
     }
+
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
+
     input {
       height: 8px;
       padding-left: 0px;

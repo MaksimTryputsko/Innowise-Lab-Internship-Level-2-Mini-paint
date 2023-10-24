@@ -17,16 +17,16 @@ const SignUp: React.FC = React.memo(() => {
     }
   });
 
-  const handleRegister = (email: string, password: string) => {
+  const onUserRegister = (email: string, password: string) => {
     dispatch(
       loadingDataFromTheServerRegistrationUser({
-        email: email,
-        password: password,
+        email,
+        password,
       }),
     );
   };
 
-  return <Form title="register" handleClick={handleRegister} />;
+  return <Form title="register" onClick={onUserRegister} />;
 });
 
 SignUp.displayName = "SignUp";

@@ -4,8 +4,8 @@ import {
   getImages,
   getUsers,
 } from "store/slices/ImagesCollectionSlice";
-import { convertDataToArray } from "functions/convertDataToArray";
-import { filterAllUsersFromServer } from "functions/filterAllUsersFromServer";
+import { sortImages } from "functions/sortImages";
+import { setUsersListFromDataBase } from "functions/setUsersListFromDataBase";
 import { imagesService } from "services/imagesService";
 
 export interface IActionGetImagesCollectionSaga {
@@ -23,8 +23,8 @@ export function* getImagesCollection(
     return;
   }
 
-  yield put(getUsers(filterAllUsersFromServer(getImagesCollection)));
-  yield put(getImages(convertDataToArray(getImagesCollection)));
+  yield put(getUsers(setUsersListFromDataBase(getImagesCollection)));
+  yield put(getImages(sortImages(getImagesCollection)));
 }
 
 function* imagesCollectionSaga() {

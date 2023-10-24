@@ -20,56 +20,50 @@ const Toolbar = () => {
     return null;
   }
 
-  const handleClickSetBrush = () => {
+  const onBrushSet = () => {
     dispatch(setTool(new Brush(canvas)));
   };
 
-  const handleClickSetRectangle = () => {
+  const onRectangleSet = () => {
     dispatch(setTool(new Rectangle(canvas)));
   };
 
-  const handleClickSetCircle = () => {
+  const onCircleSet = () => {
     dispatch(setTool(new Circle(canvas)));
   };
 
-  const handleClickSetEraser = () => {
+  const onEraserSet = () => {
     dispatch(setTool(new Eraser(canvas)));
   };
 
-  const handleClickSetLine = () => {
+  const onLineSet = () => {
     dispatch(setTool(new Line(canvas)));
   };
 
-  const handleClickSetEllipse = () => {
+  const onEllipseSet = () => {
     dispatch(setTool(new Ellipse(canvas)));
   };
 
-  const handleClickSetStar = () => {
+  const onStarSet = () => {
     dispatch(setTool(new Star(canvas)));
   };
 
-  const handleClickSetPolygon = () => {
+  const onPolygonSet = () => {
     dispatch(setTool(new Polygon(canvas)));
   };
 
   return (
     <div className={styles.toolbar}>
-      <button className={styles.brush} onClick={handleClickSetBrush}></button>
-      <button
-        className={styles.rectangle}
-        onClick={handleClickSetRectangle}></button>
-      <button className={styles.circle} onClick={handleClickSetCircle}></button>
-      <button className={styles.eraser} onClick={handleClickSetEraser}></button>
-      <button className={styles.line} onClick={handleClickSetLine}></button>
-      <button
-        className={styles.ellipse}
-        onClick={handleClickSetEllipse}></button>
-      <button className={styles.star} onClick={handleClickSetStar}>
+      <button className={styles.brush} onClick={onBrushSet}></button>
+      <button className={styles.rectangle} onClick={onRectangleSet}></button>
+      <button className={styles.circle} onClick={onCircleSet}></button>
+      <button className={styles.eraser} onClick={onEraserSet}></button>
+      <button className={styles.line} onClick={onLineSet}></button>
+      <button className={styles.ellipse} onClick={onEllipseSet}></button>
+      <button className={styles.star} onClick={onStarSet}>
         &#10038;
       </button>
-      <button
-        className={styles.polygon}
-        onClick={handleClickSetPolygon}></button>
+      <button className={styles.polygon} onClick={onPolygonSet}></button>
     </div>
   );
 };

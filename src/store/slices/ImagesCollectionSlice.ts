@@ -9,13 +9,13 @@ interface IImages {
 interface IStateImageCollection {
   isLoading: boolean;
   images: IImages[];
-  users: string[];
+  usersFromDataBase: string[];
 }
 
 const initialState: IStateImageCollection = {
   isLoading: true,
   images: [],
-  users: [],
+  usersFromDataBase: [],
 };
 
 const imagesCollectionSlice = createSlice({
@@ -36,7 +36,7 @@ const imagesCollectionSlice = createSlice({
       state.isLoading = false;
     },
     getUsers: (state, action) => {
-      state.users = action.payload;
+      state.usersFromDataBase = action.payload;
     },
   },
 });

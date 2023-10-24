@@ -11,25 +11,25 @@ const SaveToGallery = () => {
   const dispatch = useDispatch();
   const { canvas } = useAppSelector(state => state.canvas);
 
-  const handleClickSaveToSeverImage = () => {
+  const onImageSave = () => {
     if (!canvas) {
       return;
     }
-    const idForServer = nanoid(10);
-    const date = new Date();
 
+    const idForServer = nanoid(10);
+    const dateOfPublication = new Date();
     dispatch(
       setImageToServer({
         image: canvas.toDataURL(),
         id: idForServer,
         email,
-        datePublication: `${date}`,
+        datePublication: `${dateOfPublication}`,
       }),
     );
   };
 
   return (
-    <Button onClick={handleClickSaveToSeverImage} variant="outlined">
+    <Button onClick={onImageSave} variant="outlined">
       SAVE TO GALLERY
     </Button>
   );

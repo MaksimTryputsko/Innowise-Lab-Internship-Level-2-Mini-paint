@@ -4,7 +4,7 @@ import {
   loadingImagesForUserFromTheServer,
 } from "store/slices/ImagesCollectionSlice";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
-import { convertDataWithUserToUserImgArray } from "functions/convertDataWithUserToUserImgArray";
+import { filterImagesForUser } from "functions/filterImagesForUser";
 import { imagesService } from "services/imagesService";
 
 export interface IActionGetUsersImagesSaga {
@@ -22,9 +22,7 @@ export function* getUsersImagesSaga(
     return;
   }
   yield put(
-    getImages(
-      convertDataWithUserToUserImgArray(getImagesCollection, action.payload),
-    ),
+    getImages(filterImagesForUser(getImagesCollection, action.payload)),
   );
 }
 

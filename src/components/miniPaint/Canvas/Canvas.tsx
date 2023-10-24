@@ -15,6 +15,7 @@ const Canvas = () => {
     if (!canvasRef.current) {
       return;
     }
+
     dispatch(setCanvas(canvasRef.current));
     dispatch(setTool(new Brush(canvasRef.current)));
   }, []);

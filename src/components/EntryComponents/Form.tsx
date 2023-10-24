@@ -4,20 +4,23 @@ import React, { useState } from "react";
 
 interface IFormProps {
   title: string;
-  handleClick: (email: string, password: string) => void;
+  onClick: (email: string, password: string) => void;
 }
 
-const Form = ({ title, handleClick }: IFormProps) => {
+const Form = ({ title, onClick }: IFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const onChangeEmail = (text: string) => {
     setEmail(text);
   };
+
   const onChangePassword = (text: string) => {
     setPassword(text);
   };
-  const handleClickButton = () => {
-    handleClick(email, password);
+
+  const onUserCreate = () => {
+    onClick(email, password);
   };
 
   return (
@@ -34,7 +37,7 @@ const Form = ({ title, handleClick }: IFormProps) => {
         onChange={onChangePassword}
         placeholder="password"
       />
-      <Button onClick={handleClickButton} variant="outlined">
+      <Button onClick={onUserCreate} variant="outlined">
         {title}
       </Button>
     </div>

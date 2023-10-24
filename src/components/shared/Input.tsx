@@ -9,16 +9,17 @@ interface IPropsInput {
 }
 
 const Input = ({ variant, value, onChange, placeholder }: IPropsInput) => {
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
+
   return (
     <InputMUI
       placeholder={placeholder}
       variant={variant}
       color="neutral"
       value={value}
-      onChange={onChangeInput}
+      onChange={onTextChange}
     />
   );
 };

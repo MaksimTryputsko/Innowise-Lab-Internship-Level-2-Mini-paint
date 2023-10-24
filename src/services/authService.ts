@@ -3,8 +3,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { errorProcessingLogin } from "functions/errorProcessing/errorProcessingLogin";
-import { errorProcessingRegistration } from "functions/errorProcessing/errorProcessingRegistration";
+import { processingErrorsWithLogin } from "functions/processingError/processingErrorsWithLogin";
+import { processingErrorsWithRegistration } from "functions/processingError/processingErrorsWithRegistration";
 
 interface IUser {
   email: string | null;
@@ -31,7 +31,7 @@ class FirebaseAuthService implements IAuthService {
       };
       return userData;
     } catch (err) {
-      errorProcessingRegistration((err as Error).message);
+      processingErrorsWithRegistration((err as Error).message);
     }
   }
   async loginUser(email: string, password: string) {
@@ -48,7 +48,7 @@ class FirebaseAuthService implements IAuthService {
       };
       return userData;
     } catch (err) {
-      errorProcessingLogin((err as Error).message);
+      processingErrorsWithLogin((err as Error).message);
     }
   }
 }

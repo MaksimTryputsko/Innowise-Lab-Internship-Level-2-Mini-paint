@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-export const errorProcessingRegistration = (err: string) => {
+export const processingErrorsWithRegistration = (err: string) => {
   switch (err) {
     case "Firebase: Error (auth/invalid-email).":
       return toast.error("Your email is invalid, pease write correct e-mail !");

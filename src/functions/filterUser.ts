@@ -1,8 +1,8 @@
-export const filterUsers = (searchText: string, listOfUsers: string[]) => {
-  if (!searchText) {
+export const filterUsers = (searchingUser: string, listOfUsers: string[]) => {
+  if (!searchingUser) {
     return listOfUsers;
   }
-  return listOfUsers.filter(el =>
-    el.toLowerCase().includes(searchText.toLowerCase()),
+  return listOfUsers.filter(user =>
+    user.toLowerCase().includes(searchingUser.toLowerCase()),
   );
 };

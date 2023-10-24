@@ -8,14 +8,15 @@ interface IPropsColorInput {
 const ColorInput = ({ onChange }: IPropsColorInput) => {
   const [color, setColor] = useState("rgb(0, 0, 0)");
 
-  const onChangeColor = (color: string) => {
+  const onColorChange = (color: string) => {
     setColor(color);
     onChange(color);
   };
+
   return (
     <MuiColorInput
       value={color}
-      onChange={onChangeColor}
+      onChange={onColorChange}
       sx={{ width: "200px", height: "10px" }}
     />
   );

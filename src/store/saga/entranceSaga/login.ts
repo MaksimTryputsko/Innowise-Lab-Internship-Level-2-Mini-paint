@@ -9,6 +9,7 @@ interface IActionEntrySagaPayload {
   email: string;
   password: string;
 }
+
 export interface IActionEntrySaga {
   type: string;
   payload: IActionEntrySagaPayload;
@@ -19,9 +20,11 @@ export function* login(action: IActionEntrySaga): unknown {
   const userFromDataBase = yield call(async () =>
     authService.loginUser(email, password),
   );
+
   if (!userFromDataBase) {
     return;
   }
+
   yield put(setUser(userFromDataBase));
 }
 

@@ -8,7 +8,7 @@ import {
 } from "constants/valuesTheme";
 
 export interface IThemeContext {
-  changeTheme: () => void;
+  onThemeChange: () => void;
 }
 
 const ThemeContext = createContext<IThemeContext | null>(null);
@@ -28,7 +28,7 @@ const ThemeProvider = ({ children }: IPropsThemeProvider) => {
     [styles.dark]: theme === DARK_THEME,
   });
 
-  const changeTheme = () => {
+  const onThemeChange = () => {
     setTheme(theme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME);
 
     localStorage.setItem(
@@ -50,7 +50,7 @@ const ThemeProvider = ({ children }: IPropsThemeProvider) => {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ changeTheme }}>
+    <ThemeContext.Provider value={{ onThemeChange }}>
       <div className={classes}>{children}</div>
     </ThemeContext.Provider>
   );
