@@ -1,6 +1,6 @@
-export default class Tool {
-  canvas: HTMLCanvasElement;
-  ctx: CanvasRenderingContext2D | null;
+export default abstract class Tool {
+  protected canvas: HTMLCanvasElement;
+  protected ctx: CanvasRenderingContext2D | null;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -8,21 +8,27 @@ export default class Tool {
     this.destroyEvents();
   }
 
-  set strokeColor(color: string) {
+  abstract listen(): void;
+  abstract mouseUpHandler(): void;
+  abstract mouseDownHandler(event: Event): void;
+  abstract mouseMoveHandler(event: Event): void;
+  abstract draw(x: number, y: number, radius?: number, height?: number): void;
+
+  public set strokeColor(color: string) {
     if (!this.ctx) {
       return;
     }
     this.ctx.strokeStyle = color;
   }
 
-  set lineWidth(width: number) {
+  public set lineWidth(width: number) {
     if (!this.ctx) {
       return;
     }
     this.ctx.lineWidth = width;
   }
 
-  destroyEvents() {
+  private destroyEvents() {
     this.canvas.onmousemove = null;
     this.canvas.onmousedown = null;
     this.canvas.onmouseup = null;

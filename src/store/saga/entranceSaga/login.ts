@@ -17,6 +17,7 @@ export interface IActionEntrySaga {
 
 export function* login(action: IActionEntrySaga): unknown {
   const { email, password } = action.payload;
+
   const userFromDataBase = yield call(async () =>
     authService.loginUser(email, password),
   );
