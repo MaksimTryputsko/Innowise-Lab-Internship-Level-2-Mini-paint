@@ -2,12 +2,12 @@ import { Button } from "components/shared/Button";
 import { Input } from "components/shared/Input";
 import React, { useState } from "react";
 
-interface IFormProps {
+interface IAuthFormProps {
   title: string;
   onClick: (email: string, password: string) => void;
 }
 
-const Form = ({ title, onClick }: IFormProps) => {
+const AuthForm = ({ title, onClick }: IAuthFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -44,4 +44,4 @@ const Form = ({ title, onClick }: IFormProps) => {
   );
 };
 
-export { Form };
+export { AuthForm };

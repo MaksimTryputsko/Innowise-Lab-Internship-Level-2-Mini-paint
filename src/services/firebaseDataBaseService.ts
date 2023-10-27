@@ -2,7 +2,7 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { dataBase } from "../firebase";
 
 export interface DataBaseService {
-  getDocuments(nameOfCollection: string): Promise<{ id: string }[] | undefined>;
+  getDocuments<RESULT>(nameOfCollection: string): Promise<RESULT | undefined>;
   saveDocument<DOCUMENT_SAVE>(
     nameOfCollection: string,
     idCollection: string,
@@ -11,14 +11,14 @@ export interface DataBaseService {
 }
 
 export default class FirebaseDataBaseService implements DataBaseService {
-  async getDocuments(nameOfCollection: string) {
+  async getDocuments<RESULT>(nameOfCollection: string) {
     const imagesCollectionRef = collection(dataBase, nameOfCollection);
     const data = await getDocs(imagesCollectionRef);
     const filterData = data.docs.map(doc => ({
       ...doc.data(),
       id: doc.id,
     }));
-    return filterData;
+    return filterData as RESULT;
   }
   async saveDocument<DOCUMENT_SAVE>(
     nameOfCollection: string,

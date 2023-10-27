@@ -1,11 +1,10 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 import {
-  loadingImagesFromTheServer,
+  loadingImages,
   getImages,
   getUsers,
 } from "store/slices/ImagesCollectionSlice";
-import { sortImages } from "functions/sortImages";
-import { setUsersListFromDataBase } from "functions/setUsersListFromDataBase";
+import { setUsersList } from "functions/setUsersList";
 import { imagesService } from "services/imagesService";
 
 export interface IActionGetImagesCollectionSaga {
@@ -13,22 +12,23 @@ export interface IActionGetImagesCollectionSaga {
   payload: string;
 }
 
-export function* getImagesCollection(
+export function* imagesCollection(
   action: IActionGetImagesCollectionSaga,
 ): unknown {
   const getImagesCollection = yield call(async () =>
     imagesService.getImagesCollection(action.payload),
   );
-  if (!getImagesCollection) {
+
+  if (!getImagesCollection.length) {
     return;
   }
 
-  yield put(getUsers(setUsersListFromDataBase(getImagesCollection)));
-  yield put(getImages(sortImages(getImagesCollection)));
+  yield put(getUsers(setUsersList(getImagesCollection)));
+  yield put(getImages(getImagesCollection));
 }
 
 function* imagesCollectionSaga() {
-  yield takeEvery(loadingImagesFromTheServer.type, getImagesCollection);
+  yield takeEvery(loadingImages.type, imagesCollection);
 }
 
 export { imagesCollectionSaga };

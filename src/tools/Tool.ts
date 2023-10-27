@@ -8,11 +8,16 @@ export default abstract class Tool {
     this.destroyEvents();
   }
 
-  abstract listen(): void;
   abstract mouseUpHandler(): void;
   abstract mouseDownHandler(event: Event): void;
   abstract mouseMoveHandler(event: Event): void;
   abstract draw(x: number, y: number, radius?: number, height?: number): void;
+
+  listen() {
+    this.canvas.onmousemove = this.mouseMoveHandler.bind(this);
+    this.canvas.onmousedown = this.mouseDownHandler.bind(this);
+    this.canvas.onmouseup = this.mouseUpHandler.bind(this);
+  }
 
   public set strokeColor(color: string) {
     if (!this.ctx) {

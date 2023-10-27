@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setLineWidth, setStrokeColor } from "store/slices/canvasSlice";
 import { Counter } from "components/shared/Counter/Counter";
 
-import { ColorInput } from "components/shared/ColorInput";
+import { ColorInput } from "components/shared/ColorInput/ColorInput";
 
 const SettingBar = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const SettingBar = () => {
     dispatch(setStrokeColor(value));
   };
 
-  const onClickSetLineWidth = (value: number) => {
+  const onSetLineWidthClick = (value: number) => {
     dispatch(setLineWidth(value));
   };
 
@@ -21,7 +21,7 @@ const SettingBar = () => {
     <div className={styles.settingBar}>
       <div className={styles.countBlock}>
         <span>Set line width:</span>
-        <Counter onClick={onClickSetLineWidth} />
+        <Counter onClick={onSetLineWidthClick} />
       </div>
       <div>
         <span>Set color:</span>

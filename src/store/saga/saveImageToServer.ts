@@ -1,8 +1,5 @@
 import { put, takeEvery } from "redux-saga/effects";
-import {
-  loadingImagesFromTheServer,
-  setImageToServer,
-} from "store/slices/ImagesCollectionSlice";
+import { loadingImages, saveImage } from "store/slices/ImagesCollectionSlice";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
 import { imagesService } from "services/imagesService";
 
@@ -21,11 +18,11 @@ interface IActionSetImageSaga {
 export function* saveImageToServer(action: IActionSetImageSaga): unknown {
   const { id, email } = action.payload;
   yield imagesService.saveImage(IMAGES_COLLECTION, email, id, action.payload);
-  yield put(loadingImagesFromTheServer(IMAGES_COLLECTION));
+  yield put(loadingImages(IMAGES_COLLECTION));
 }
 
-function* setImageSaga() {
-  yield takeEvery(setImageToServer.type, saveImageToServer);
+function* saveImageSaga() {
+  yield takeEvery(saveImage.type, saveImageToServer);
 }
 
-export { setImageSaga };
+export { saveImageSaga };

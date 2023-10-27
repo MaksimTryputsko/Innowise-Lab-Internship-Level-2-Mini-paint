@@ -4,10 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeUser } from "store/slices/userSlices";
 import styles from "./header.module.scss";
 import { Button } from "components/shared/Button";
-import {
-  IThemeContext,
-  useThemeContext,
-} from "components/ThemeProvider/ThemeProvider";
+import { useThemeContext } from "components/ThemeProvider/ThemeProvider";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,7 +14,7 @@ const Header = () => {
     dispatch(removeUser());
   };
 
-  const { onThemeChange } = useThemeContext() as IThemeContext;
+  const { onThemeChange } = useThemeContext();
 
   return (
     <header className={styles.header}>

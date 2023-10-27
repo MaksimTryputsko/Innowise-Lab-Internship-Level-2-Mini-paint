@@ -8,17 +8,11 @@ export default class Line extends Tool {
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
-    this.listen();
+    super.listen();
     this.mouseDown = false;
     this.currentX = 0;
     this.currentY = 0;
     this.saved = "";
-  }
-
-  listen() {
-    this.canvas.onmousedown = this.mouseDownHandler.bind(this);
-    this.canvas.onmouseup = this.mouseUpHandler.bind(this);
-    this.canvas.onmousemove = this.mouseMoveHandler.bind(this);
   }
 
   mouseDownHandler(e: MouseEvent) {

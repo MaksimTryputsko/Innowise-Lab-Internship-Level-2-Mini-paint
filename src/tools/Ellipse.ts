@@ -8,17 +8,11 @@ export default class Ellipse extends Tool {
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
-    this.listen();
+    super.listen();
     this.mouseDown = false;
     this.startX = 0;
     this.startY = 0;
     this.saved = "";
-  }
-
-  listen() {
-    this.canvas.onmousemove = this.mouseMoveHandler.bind(this);
-    this.canvas.onmousedown = this.mouseDownHandler.bind(this);
-    this.canvas.onmouseup = this.mouseUpHandler.bind(this);
   }
 
   mouseDownHandler(e: MouseEvent) {

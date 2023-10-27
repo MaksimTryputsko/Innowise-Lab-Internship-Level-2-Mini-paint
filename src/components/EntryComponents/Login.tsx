@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form } from "./Form";
+import { AuthForm } from "./AuthForm";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuth } from "hooks/useAuth";
@@ -21,7 +21,7 @@ const Login: React.FC = React.memo(() => {
     dispatch(loadingDataFromTheServerLoginUser({ email, password }));
   };
 
-  return <Form title="sign in" onClick={onUserLogIn} />;
+  return <AuthForm title="sign in" onClick={onUserLogIn} />;
 });
 
 Login.displayName = "Login";

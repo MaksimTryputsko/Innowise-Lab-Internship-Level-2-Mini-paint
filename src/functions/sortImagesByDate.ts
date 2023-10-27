@@ -1,7 +1,7 @@
-import { IImages } from "constants/interfaces";
+import { IImage } from "constants/interfaces";
 
-export const sortImagesByDate = (firstImage: IImages, secondImage: IImages) => {
-  const firstDateOfPublication: Date = new Date(firstImage.datePublication);
-  const secondDateOfPublication: Date = new Date(secondImage.datePublication);
+export const sortImagesByDate = (firstImage: IImage, secondImage: IImage) => {
+  const firstDateOfPublication: Date = new Date(firstImage.publicationDate);
+  const secondDateOfPublication: Date = new Date(secondImage.publicationDate);
   return secondDateOfPublication.valueOf() - firstDateOfPublication.valueOf();
 };

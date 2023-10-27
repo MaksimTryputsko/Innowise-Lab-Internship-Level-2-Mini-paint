@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useState,
+} from "react";
 import styles from "./themeProvider.module.scss";
 import classNames from "classnames";
 import {
@@ -7,21 +12,22 @@ import {
   LIGHT_THEME,
 } from "constants/valuesTheme";
 
-export interface IThemeContext {
+interface IThemeContext {
   onThemeChange: () => void;
 }
 
-const ThemeContext = createContext<IThemeContext | null>(null);
+const ThemeContext = createContext<IThemeContext>({
+  onThemeChange: () => "default value",
+});
 
-export const useThemeContext = () =>
-  useContext<IThemeContext | null>(ThemeContext);
+export const useThemeContext = () => useContext<IThemeContext>(ThemeContext);
 
 interface IPropsThemeProvider {
   children: React.ReactNode;
 }
 
 const ThemeProvider = ({ children }: IPropsThemeProvider) => {
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState(LIGHT_THEME);
 
   const classes = classNames(styles.default, {
     [styles.light]: theme === LIGHT_THEME,
@@ -37,7 +43,7 @@ const ThemeProvider = ({ children }: IPropsThemeProvider) => {
     );
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const attributeFromLocalStorage = localStorage.getItem(
       KEY_THEME_LOCALSTORAGE,
     );

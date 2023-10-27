@@ -5,11 +5,11 @@ import { Canvas } from "./Canvas/Canvas";
 
 const MiniPaint = () => {
   return (
-    <div>
+    <>
       <Toolbar />
       <SettingBar />
       <Canvas />
-    </div>
+    </>
   );
 };
 

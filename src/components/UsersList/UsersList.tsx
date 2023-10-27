@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import styles from "./filterUsers.module.scss";
+import styles from "./usersList.module.scss";
 import { filterUsers } from "functions/filterUser";
-import { loadingImagesForUserFromTheServer } from "store/slices/ImagesCollectionSlice";
+import { loadingImagesForUser } from "store/slices/ImagesCollectionSlice";
 import { Input } from "components/shared/Input";
 import { useAppSelector } from "hooks/useAppSelector";
+import { debounce } from "lodash";
 
-const FilterUsers = () => {
-  const { usersFromDataBase } = useAppSelector(state => state.imagesCollection);
+const UsersList = () => {
+  const { users } = useAppSelector(state => state.imagesCollection);
   const dispatch = useDispatch();
-  const [usersList, setUsersList] = useState(usersFromDataBase);
+  const [usersList, setUsersList] = useState(users);
   const [searchingUser, setSearchingUser] = useState("");
 
   useEffect(() => {
-    const Debounce = setTimeout(() => {
-      const filteredUsers = filterUsers(searchingUser, usersFromDataBase);
+    const debounceSearch = debounce(() => {
+      const filteredUsers = filterUsers(searchingUser, users);
       setUsersList(filteredUsers);
     }, 300);
-
-    return () => clearTimeout(Debounce);
+    debounceSearch();
+    return () => debounceSearch.cancel();
   }, [searchingUser]);
 
   const onUserChange = (value: string) => {
     setSearchingUser(value);
   };
 
-  const onUserSet = (email: string) => {
+  const onUserClick = (email: string) => {
     setSearchingUser("");
-    dispatch(loadingImagesForUserFromTheServer(email));
+    dispatch(loadingImagesForUser(email));
   };
 
   return (
@@ -41,7 +42,7 @@ const FilterUsers = () => {
       {Boolean(searchingUser.length) && usersList && (
         <ul className={styles.userListBlock}>
           {usersList.map(user => (
-            <li key={user} onClick={() => onUserSet(user)}>
+            <li key={user} onClick={() => onUserClick(user)}>
               {user}
             </li>
           ))}
@@ -51,4 +52,4 @@ const FilterUsers = () => {
   );
 };
 
-export { FilterUsers };
+export { UsersList };

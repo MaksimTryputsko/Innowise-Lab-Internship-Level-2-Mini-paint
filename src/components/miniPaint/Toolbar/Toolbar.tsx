@@ -11,6 +11,7 @@ import Ellipse from "tools/Ellipse";
 import Star from "tools/Star";
 import Polygon from "tools/Polygon";
 import { useAppSelector } from "hooks/useAppSelector";
+import { ButtonIcon } from "components/shared/ButtonIcon/ButtonIcon";
 
 const Toolbar = () => {
   const { canvas } = useAppSelector(state => state.canvas);
@@ -54,16 +55,46 @@ const Toolbar = () => {
 
   return (
     <div className={styles.toolbar}>
-      <button className={styles.brush} onClick={onBrushSet}></button>
-      <button className={styles.rectangle} onClick={onRectangleSet}></button>
-      <button className={styles.circle} onClick={onCircleSet}></button>
-      <button className={styles.eraser} onClick={onEraserSet}></button>
-      <button className={styles.line} onClick={onLineSet}></button>
-      <button className={styles.ellipse} onClick={onEllipseSet}></button>
-      <button className={styles.star} onClick={onStarSet}>
-        &#10038;
-      </button>
-      <button className={styles.polygon} onClick={onPolygonSet}></button>
+      <ButtonIcon
+        image="https://www.shutterstock.com/shutterstock/photos/2110776980/display_1500/stock-photo-paint-brush-with-close-up-view-2110776980.jpg"
+        description="brush"
+        onClick={onBrushSet}
+      />
+      <ButtonIcon
+        image="https://cdn-icons-png.flaticon.com/512/1827/1827954.png"
+        description="eraser"
+        onClick={onEraserSet}
+      />
+      <ButtonIcon
+        image="https://img.razrisyika.ru/img/64/253058-podrobnaya-stranica-raskraski-pryamougolnika.jpg"
+        description="rectangle"
+        onClick={onRectangleSet}
+      />
+      <ButtonIcon
+        image="https://www.svgrepo.com/show/21400/circle-outline.svg"
+        description="circle"
+        onClick={onCircleSet}
+      />
+      <ButtonIcon
+        image="https://static.thenounproject.com/png/3635576-200.png"
+        description="line"
+        onClick={onLineSet}
+      />
+      <ButtonIcon
+        image="https://www.svgrepo.com/show/133866/ellipse-outline-shape-variant.svg"
+        description="ellipse"
+        onClick={onEllipseSet}
+      />
+      <ButtonIcon
+        image="https://static.thenounproject.com/png/1502724-200.png"
+        description="star"
+        onClick={onStarSet}
+      />
+      <ButtonIcon
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIny06dYR6jm85NXqLm8_1SUchZv-qJcts1g&usqp=CAU"
+        description="polygon"
+        onClick={onPolygonSet}
+      />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MuiColorInput } from "mui-color-input";
+import styles from "./colorInput.module.scss";
 
 interface IPropsColorInput {
   onChange: (value: string) => void;
@@ -17,7 +18,7 @@ const ColorInput = ({ onChange }: IPropsColorInput) => {
     <MuiColorInput
       value={color}
       onChange={onColorChange}
-      sx={{ width: "200px", height: "10px" }}
+      className={styles.size}
     />
   );
 };

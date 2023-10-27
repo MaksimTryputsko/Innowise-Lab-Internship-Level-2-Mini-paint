@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "./entry.module.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LOGIN_PAGE } from "constants/addressPages";
 import { SignUp } from "components/EntryComponents/SignUp";
 import { Button } from "components/shared/Button";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const onNavigateClick = () => {
+    navigate(LOGIN_PAGE);
+  };
+
   return (
     <div className={styles.mainBlock}>
       <h1>Register</h1>
@@ -14,9 +19,9 @@ const RegisterPage = () => {
       </div>
       <div className={styles.blockChangePage}>
         <span>Already have account ?</span>
-        <Link to={LOGIN_PAGE}>
-          <Button variant="outlined">Sign in</Button>
-        </Link>
+        <Button variant="outlined" onClick={onNavigateClick}>
+          Sign in
+        </Button>
       </div>
     </div>
   );

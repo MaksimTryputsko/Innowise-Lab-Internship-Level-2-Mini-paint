@@ -11,9 +11,9 @@ export interface ICanvas {
   color: string;
 }
 
-export interface IImages {
+export interface IImage {
   image: string;
   id: string;
   email: string;
-  datePublication: string;
+  publicationDate: string;
 }

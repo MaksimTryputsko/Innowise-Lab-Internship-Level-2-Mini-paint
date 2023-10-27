@@ -6,9 +6,9 @@ import { fork } from "redux-saga/effects";
 import { registrationSagaUser } from "./saga/entranceSaga/registration";
 import canvasReducer from "./slices/canvasSlice";
 import imagesCollectionReducer from "./slices/ImagesCollectionSlice";
-import { imagesCollectionSaga } from "./saga/getImagesCollection";
-import { setImageSaga } from "./saga/saveImageToServer";
-import { userValueImagesSaga } from "./saga/getUsersImages";
+import { imagesCollectionSaga } from "./saga/imagesCollection";
+import { saveImageSaga } from "./saga/saveImageToServer";
+import { userValueImagesSaga } from "./saga/usersImagesSaga";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -27,7 +27,7 @@ function* rootSaga() {
   yield fork(loginUserSaga);
   yield fork(registrationSagaUser);
   yield fork(imagesCollectionSaga);
-  yield fork(setImageSaga);
+  yield fork(saveImageSaga);
   yield fork(userValueImagesSaga);
 }
 

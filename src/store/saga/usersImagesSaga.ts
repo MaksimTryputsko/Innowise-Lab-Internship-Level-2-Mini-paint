@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 import {
   getImages,
-  loadingImagesForUserFromTheServer,
+  loadingImagesForUser,
 } from "store/slices/ImagesCollectionSlice";
 import { IMAGES_COLLECTION } from "constants/nameOfCollection";
 import { filterImagesForUser } from "functions/filterImagesForUser";
@@ -12,9 +12,7 @@ export interface IActionGetUsersImagesSaga {
   payload: string;
 }
 
-export function* getUsersImagesSaga(
-  action: IActionGetUsersImagesSaga,
-): unknown {
+export function* usersImagesSaga(action: IActionGetUsersImagesSaga): unknown {
   const getImagesCollection = yield call(async () =>
     imagesService.getImagesCollection(IMAGES_COLLECTION),
   );
@@ -27,7 +25,7 @@ export function* getUsersImagesSaga(
 }
 
 function* userValueImagesSaga() {
-  yield takeEvery(loadingImagesForUserFromTheServer.type, getUsersImagesSaga);
+  yield takeEvery(loadingImagesForUser.type, usersImagesSaga);
 }
 
 export { userValueImagesSaga };

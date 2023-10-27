@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Form } from "./Form";
+import { AuthForm } from "./AuthForm";
 import { useAuth } from "hooks/useAuth";
 import { HOME_PAGE } from "constants/addressPages";
 import { loadingDataFromTheServerRegistrationUser } from "store/slices/userSlices";
@@ -26,7 +26,7 @@ const SignUp: React.FC = React.memo(() => {
     );
   };
 
-  return <Form title="register" onClick={onUserRegister} />;
+  return <AuthForm title="register" onClick={onUserRegister} />;
 });
 
 SignUp.displayName = "SignUp";

@@ -1,0 +1,22 @@
+.iconButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  display: flex;
+}
+
+.small {
+  width: 10px;
+  height: 10px;
+}
+
+.medium {
+  width: 25px;
+  height: 25px;
+}
+
+.large {
+  width: 50px;
+  height: 50px;
+}

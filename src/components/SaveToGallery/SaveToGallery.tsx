@@ -3,7 +3,7 @@ import { Button } from "components/shared/Button";
 import { useAuth } from "hooks/useAuth";
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import { setImageToServer } from "store/slices/ImagesCollectionSlice";
+import { saveImage } from "store/slices/ImagesCollectionSlice";
 import { useAppSelector } from "hooks/useAppSelector";
 
 const SaveToGallery = () => {
@@ -17,13 +17,13 @@ const SaveToGallery = () => {
     }
 
     const idForServer = nanoid(10);
-    const dateOfPublication = new Date();
+    const publicationDate = new Date();
     dispatch(
-      setImageToServer({
+      saveImage({
         image: canvas.toDataURL(),
         id: idForServer,
         email,
-        datePublication: `${dateOfPublication}`,
+        publicationDate: `${publicationDate}`,
       }),
     );
   };

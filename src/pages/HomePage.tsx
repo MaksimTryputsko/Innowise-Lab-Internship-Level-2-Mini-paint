@@ -1,4 +1,4 @@
-import { FilterUsers } from "components/FilterUsers/FilterUsers";
+import { UsersList } from "components/UsersList/UsersList";
 import { Header } from "components/Header/Header";
 import { ImagesSlider } from "components/ImagesSlider/ImagesSlider";
 import { MiniPaint } from "components/miniPaint/MiniPaint";
@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div>
       <Header />
-      <FilterUsers />
+      <UsersList />
       <ImagesSlider />
       <MiniPaint />
     </div>

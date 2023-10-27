@@ -9,26 +9,26 @@ interface IImages {
 interface IStateImageCollection {
   isLoading: boolean;
   images: IImages[];
-  usersFromDataBase: string[];
+  users: string[];
 }
 
 const initialState: IStateImageCollection = {
   isLoading: true,
   images: [],
-  usersFromDataBase: [],
+  users: [],
 };
 
 const imagesCollectionSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loadingImagesFromTheServer: (state, action) => {
+    loadingImages: (state, action) => {
       state.isLoading = true;
     },
-    setImageToServer: (state, action) => {
+    saveImage: (state, action) => {
       state.isLoading = true;
     },
-    loadingImagesForUserFromTheServer: (state, action) => {
+    loadingImagesForUser: (state, action) => {
       state.isLoading = true;
     },
     getImages: (state, action) => {
@@ -36,17 +36,17 @@ const imagesCollectionSlice = createSlice({
       state.isLoading = false;
     },
     getUsers: (state, action) => {
-      state.usersFromDataBase = action.payload;
+      state.users = action.payload;
     },
   },
 });
 
 export const {
-  loadingImagesFromTheServer,
+  loadingImages,
   getImages,
-  setImageToServer,
+  saveImage,
   getUsers,
-  loadingImagesForUserFromTheServer,
+  loadingImagesForUser,
 } = imagesCollectionSlice.actions;
 
 export default imagesCollectionSlice.reducer;
