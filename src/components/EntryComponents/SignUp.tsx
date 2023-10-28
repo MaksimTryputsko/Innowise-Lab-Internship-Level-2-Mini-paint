@@ -6,7 +6,7 @@ import { useAuth } from "hooks/useAuth";
 import { HOME_PAGE } from "constants/addressPages";
 import { loadingDataFromTheServerRegistrationUser } from "store/slices/userSlices";
 
-const SignUp: React.FC = React.memo(() => {
+const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
@@ -27,8 +27,6 @@ const SignUp: React.FC = React.memo(() => {
   };
 
   return <AuthForm title="register" onClick={onUserRegister} />;
-});
-
-SignUp.displayName = "SignUp";
+};
 
 export { SignUp };

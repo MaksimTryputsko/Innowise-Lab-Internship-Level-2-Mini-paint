@@ -6,7 +6,7 @@ import { useAuth } from "hooks/useAuth";
 import { HOME_PAGE } from "constants/addressPages";
 import { loadingDataFromTheServerLoginUser } from "store/slices/userSlices";
 
-const Login: React.FC = React.memo(() => {
+const Login: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
@@ -22,8 +22,6 @@ const Login: React.FC = React.memo(() => {
   };
 
   return <AuthForm title="sign in" onClick={onUserLogIn} />;
-});
-
-Login.displayName = "Login";
+};
 
 export { Login };

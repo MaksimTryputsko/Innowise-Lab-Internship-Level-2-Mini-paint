@@ -13,13 +13,14 @@ const HomePage = () => {
   if (!isAuth) {
     return <Navigate to={LOGIN_PAGE} />;
   }
+
   return (
-    <div>
+    <>
       <Header />
       <UsersList />
       <ImagesSlider />
       <MiniPaint />
-    </div>
+    </>
   );
 };
 

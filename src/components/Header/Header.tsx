@@ -9,7 +9,6 @@ import { useThemeContext } from "components/ThemeProvider/ThemeProvider";
 const Header = () => {
   const dispatch = useDispatch();
   const { email } = useAuth();
-
   const onUserRemove = () => {
     dispatch(removeUser());
   };
