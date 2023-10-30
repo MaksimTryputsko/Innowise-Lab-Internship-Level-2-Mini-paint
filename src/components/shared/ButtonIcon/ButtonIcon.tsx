@@ -22,8 +22,7 @@ const ButtonIcon = ({
   });
 
   return (
-    <button onClick={onClick} className={styles.iconButton} disabled={disabled}>
-      {/* <img src={image} alt={description} */}
+    <button onClick={onClick} className={classesSizes} disabled={disabled}>
       {children}
     </button>
   );

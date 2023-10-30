@@ -69,6 +69,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",

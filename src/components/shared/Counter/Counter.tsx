@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./counter.module.scss";
 import { ButtonIcon } from "../ButtonIcon/ButtonIcon";
-import { MinusIcon } from "components/icons/counter/Minus";
-import { PlusIcon } from "components/icons/counter/Plus";
+import { ReactComponent as MinusIcon } from "icons/minus.svg";
+import { ReactComponent as PlusIcon } from "icons/plus.svg";
 
 interface IPropsCounter {
   onClick: (value: number) => void;

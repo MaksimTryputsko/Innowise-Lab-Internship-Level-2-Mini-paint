@@ -12,14 +12,15 @@ import Star from "tools/Star";
 import Polygon from "tools/Polygon";
 import { useAppSelector } from "hooks/useAppSelector";
 import { ButtonIcon } from "components/shared/ButtonIcon/ButtonIcon";
-import { BrushIcon } from "components/icons/Brush";
-import { EraserIcon } from "components/icons/Eraser";
-import { CircleIcon } from "components/icons/Circle";
-import { LineIcon } from "components/icons/Line";
-import { EllipseIcon } from "components/icons/Ellipse";
-import { PolygonIcon } from "components/icons/Polygon";
-import { RectangleIcon } from "components/icons/Rectangle";
-import { StarIcon } from "components/icons/Star";
+
+import { ReactComponent as BrushIcon } from "icons/brush.svg";
+import { ReactComponent as EllipseIcon } from "icons/ellipse.svg";
+import { ReactComponent as PolygonIcon } from "icons/polygon.svg";
+import { ReactComponent as StarIcon } from "icons/star.svg";
+import { ReactComponent as CircleIcon } from "icons/circle.svg";
+import { ReactComponent as EraserIcon } from "icons/eraser.svg";
+import { ReactComponent as RectanglesIcon } from "icons/rect.svg";
+import { ReactComponent as LineIcon } from "icons/line.svg";
 
 const Toolbar = () => {
   const { canvas } = useAppSelector(state => state.canvas);
@@ -70,7 +71,7 @@ const Toolbar = () => {
         <EraserIcon />
       </ButtonIcon>
       <ButtonIcon onClick={onRectangleSet}>
-        <RectangleIcon />
+        <RectanglesIcon />
       </ButtonIcon>
       <ButtonIcon onClick={onCircleSet}>
         <CircleIcon />
