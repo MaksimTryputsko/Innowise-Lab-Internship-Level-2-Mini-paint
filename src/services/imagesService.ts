@@ -1,69 +1,57 @@
 import toast from "react-hot-toast";
-import FirebaseDataBaseService, {
-  DataBaseService,
-} from "./firebaseDataBaseService";
+import ImagesRepository, {
+  IImagesRepository,
+} from "../repository/imagesRepository";
 import { IImage } from "constants/interfaces";
-import { sortImagesByDate } from "functions/sortImagesByDate";
-
-interface IImageDescription {
-  datePublication: string;
-  email: string;
-  id: string;
-  image: string;
-}
 
 interface IImagesService {
-  getImagesCollection(nameOfCollection: string): Promise<IImage[] | undefined>;
-  saveImage(
-    nameOfCollection: string,
-    userEmail: string,
-    imageId: string,
-    imageDescription: IImageDescription,
-  ): void;
+  getImagesCollection(): Promise<IImage[] | undefined>;
+  saveImage(userEmail: string, imageId: string, imageDescription: IImage): void;
 }
 
 class ImagesService implements IImagesService {
-  constructor(public dataBaseService: DataBaseService) {}
+  constructor(public repository: IImagesRepository) {}
 
-  async getImagesCollection(nameOfCollection: string) {
+  async getImagesCollection() {
     try {
-      const data =
-        await this.dataBaseService.getDocuments<
-          Record<string, IImage & string>[]
-        >(nameOfCollection);
+      const data = await this.repository.getImagesList();
 
       if (!data) {
         return [];
       }
-      const images = data.map(el => {
-        delete el.id;
-        return Object.values(el);
+
+      const images = data.map(image => Object.values(image));
+
+      return images.flat().sort((firstImage, secondImage) => {
+        const firstDateOfPublication: Date = new Date(
+          firstImage.publicationDate,
+        );
+        const secondDateOfPublication: Date = new Date(
+          secondImage.publicationDate,
+        );
+        return (
+          secondDateOfPublication.valueOf() - firstDateOfPublication.valueOf()
+        );
       });
-      return images.flat().sort(sortImagesByDate);
     } catch (err) {
       toast.error("Sorry we have problem with server !");
     }
   }
 
   async saveImage(
-    nameOfCollection: string,
     userEmail: string,
     imageId: string,
-    imageDescription: IImageDescription,
+    imageDescription: IImage,
   ) {
     try {
       const document = {
         [imageId]: imageDescription,
       };
-      await this.dataBaseService.saveDocument<IImageDescription>(
-        nameOfCollection,
-        userEmail,
-        document,
-      );
+      await this.repository.saveImage(userEmail, document);
     } catch (err) {
       toast.error("Sorry we have problem with server !");
     }
   }
 }
 
-export const imagesService = new ImagesService(new FirebaseDataBaseService());
+export const imagesService = new ImagesService(new ImagesRepository());

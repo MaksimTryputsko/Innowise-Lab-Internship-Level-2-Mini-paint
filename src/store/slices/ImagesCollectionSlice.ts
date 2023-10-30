@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface IImages {
-  id: string;
-  image: string;
-  email: string;
-}
+import { IImage } from "constants/interfaces";
 
 interface IStateImageCollection {
   isLoading: boolean;
-  images: IImages[];
+  images: IImage[];
   users: string[];
 }
 
@@ -22,7 +17,7 @@ const imagesCollectionSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loadingImages: (state, action) => {
+    loadingImages: state => {
       state.isLoading = true;
     },
     saveImage: (state, action) => {

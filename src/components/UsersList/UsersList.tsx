@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./usersList.module.scss";
-import { filterUsers } from "functions/filterUser";
 import { loadingImagesForUser } from "store/slices/ImagesCollectionSlice";
 import { Input } from "components/shared/Input";
 import { useAppSelector } from "hooks/useAppSelector";
@@ -15,9 +14,12 @@ const UsersList = () => {
 
   useEffect(() => {
     const debounceSearch = debounce(() => {
-      const filteredUsers = filterUsers(searchingUser, users);
-      setUsersList(filteredUsers);
+      const user = users.filter(user =>
+        user.toLowerCase().includes(searchingUser.toLowerCase()),
+      );
+      setUsersList(user);
     }, 300);
+
     debounceSearch();
     return () => debounceSearch.cancel();
   }, [searchingUser]);

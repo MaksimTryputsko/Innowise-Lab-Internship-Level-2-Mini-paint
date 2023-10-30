@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadingImages } from "store/slices/ImagesCollectionSlice";
 import styles from "./imagesSlider.module.scss";
-import { IMAGES_COLLECTION } from "constants/nameOfCollection";
 import { useAppSelector } from "hooks/useAppSelector";
 
 const ImagesSlider = () => {
@@ -10,7 +9,7 @@ const ImagesSlider = () => {
   const { images } = useAppSelector(state => state.imagesCollection);
 
   useEffect(() => {
-    dispatch(loadingImages(IMAGES_COLLECTION));
+    dispatch(loadingImages());
   }, []);
 
   if (!images.length) {

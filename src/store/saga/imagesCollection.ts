@@ -9,14 +9,11 @@ import { imagesService } from "services/imagesService";
 
 export interface IActionGetImagesCollectionSaga {
   type: string;
-  payload: string;
 }
 
-export function* imagesCollection(
-  action: IActionGetImagesCollectionSaga,
-): unknown {
+export function* imagesCollection(): unknown {
   const getImagesCollection = yield call(async () =>
-    imagesService.getImagesCollection(action.payload),
+    imagesService.getImagesCollection(),
   );
 
   if (!getImagesCollection.length) {

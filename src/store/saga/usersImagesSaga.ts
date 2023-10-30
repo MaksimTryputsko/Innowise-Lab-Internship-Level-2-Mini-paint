@@ -3,9 +3,8 @@ import {
   getImages,
   loadingImagesForUser,
 } from "store/slices/ImagesCollectionSlice";
-import { IMAGES_COLLECTION } from "constants/nameOfCollection";
-import { filterImagesForUser } from "functions/filterImagesForUser";
 import { imagesService } from "services/imagesService";
+import { IImage } from "constants/interfaces";
 
 export interface IActionGetUsersImagesSaga {
   type: string;
@@ -14,14 +13,17 @@ export interface IActionGetUsersImagesSaga {
 
 export function* usersImagesSaga(action: IActionGetUsersImagesSaga): unknown {
   const getImagesCollection = yield call(async () =>
-    imagesService.getImagesCollection(IMAGES_COLLECTION),
+    imagesService.getImagesCollection(),
   );
   if (!getImagesCollection) {
     return;
   }
-  yield put(
-    getImages(filterImagesForUser(getImagesCollection, action.payload)),
+
+  const userImages = getImagesCollection.filter(
+    (image: IImage) => image.email === action.payload,
   );
+
+  yield put(getImages(userImages));
 }
 
 function* userValueImagesSaga() {

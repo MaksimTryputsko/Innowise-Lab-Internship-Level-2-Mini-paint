@@ -14,7 +14,6 @@ const Header = () => {
   };
 
   const { onThemeChange } = useThemeContext();
-
   return (
     <header className={styles.header}>
       <h1>Hello {email}</h1>

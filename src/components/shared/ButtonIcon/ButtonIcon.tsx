@@ -1,23 +1,21 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./buttonIcon.module.scss";
 import classNames from "classnames";
 
 interface IPropsIconImage {
-  image: string;
-  description: string;
+  children: ReactNode;
   onClick: () => void;
   size?: string;
   disabled?: boolean;
 }
 
 const ButtonIcon = ({
-  image,
-  description,
+  children,
   onClick,
   size = "M",
   disabled = false,
 }: IPropsIconImage) => {
-  const classesSizes = classNames({
+  const classesSizes = classNames(styles.iconButton, {
     [styles.small]: size === "S",
     [styles.medium]: size === "M",
     [styles.large]: size === "L",
@@ -25,7 +23,8 @@ const ButtonIcon = ({
 
   return (
     <button onClick={onClick} className={styles.iconButton} disabled={disabled}>
-      <img src={image} alt={description} className={classesSizes} />
+      {/* <img src={image} alt={description} */}
+      {children}
     </button>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { REGISTER_PAGE } from "constants/addressPages";
 import styles from "./entry.module.scss";
