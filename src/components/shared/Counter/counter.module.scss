@@ -1,0 +1,27 @@
+@import "/src/constants/variables.scss";
+
+.counterLineWidth {
+  display: flex;
+  border: 1px solid $darkColor;
+  padding: 2px;
+  border-radius: 20%;
+
+  button {
+    outline: none;
+    border: 0;
+    background: transparent;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+  }
+}

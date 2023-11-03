@@ -1,0 +1,12 @@
+@import "/src/constants/variables.scss";
+
+.toolbar {
+  height: 40px;
+  background-color: $whiteColor;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 5px $boxShadowGrey;
+  border-bottom: 2px solid $boxShadowGrey;
+  padding-left: 20px;
+}
