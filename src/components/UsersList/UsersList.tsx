@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import styles from "./usersList.module.scss";
-import { loadingImagesForUser } from "store/slices/ImagesCollectionSlice";
 import { Input } from "components/shared/Input";
-import { useAppSelector } from "hooks/useAppSelector";
 import { debounce } from "lodash";
+import { useStores } from "hooks/useStores";
 
 const UsersList = () => {
-  const { users } = useAppSelector(state => state.imagesCollection);
-  const dispatch = useDispatch();
+  const { imagesCollection } = useStores();
+  const users = imagesCollection.users;
+
   const [usersList, setUsersList] = useState(users);
   const [searchingUser, setSearchingUser] = useState("");
 
@@ -30,7 +29,7 @@ const UsersList = () => {
 
   const onUserClick = (email: string) => {
     setSearchingUser("");
-    dispatch(loadingImagesForUser(email));
+    imagesCollection.getUserImages(email);
   };
 
   return (

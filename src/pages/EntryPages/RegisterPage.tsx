@@ -10,7 +10,6 @@ const RegisterPage = () => {
   const onNavigateClick = () => {
     navigate(LOGIN_PAGE);
   };
-
   return (
     <div className={styles.mainBlock}>
       <h1>Register</h1>

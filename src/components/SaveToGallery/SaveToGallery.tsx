@@ -1,31 +1,27 @@
 import React from "react";
 import { Button } from "components/shared/Button";
 import { useAuth } from "hooks/useAuth";
-import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
-import { saveImage } from "store/slices/ImagesCollectionSlice";
-import { useAppSelector } from "hooks/useAppSelector";
+import canvasState from "store/canvasState";
+import { useStores } from "hooks/useStores";
 
 const SaveToGallery = () => {
   const { email } = useAuth();
-  const dispatch = useDispatch();
-  const { canvas } = useAppSelector(state => state.canvas);
+  const { imagesCollection } = useStores();
 
   const onImageSave = () => {
-    if (!canvas) {
+    if (!canvasState.canvas || !email) {
       return;
     }
-
     const idForServer = nanoid(10);
     const publicationDate = new Date();
-    dispatch(
-      saveImage({
-        image: canvas.toDataURL(),
-        id: idForServer,
-        email,
-        publicationDate: `${publicationDate}`,
-      }),
-    );
+
+    imagesCollection.saveImage({
+      image: canvasState.canvas.toDataURL(),
+      id: idForServer,
+      email,
+      publicationDate: `${publicationDate}`,
+    });
   };
 
   return (

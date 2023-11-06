@@ -6,8 +6,9 @@ import { LOGIN_PAGE } from "constants/addressPages";
 import { useAuth } from "hooks/useAuth";
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
-const HomePage = () => {
+const HomePage = observer(() => {
   const { isAuth } = useAuth();
 
   if (!isAuth) {
@@ -22,6 +23,6 @@ const HomePage = () => {
       <MiniPaint />
     </>
   );
-};
+});
 
 export { HomePage };

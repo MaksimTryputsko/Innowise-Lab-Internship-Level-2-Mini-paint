@@ -1,20 +1,16 @@
 import React from "react";
 import styles from "./settingBar.module.scss";
-import { useDispatch } from "react-redux";
-import { setLineWidth, setStrokeColor } from "store/slices/canvasSlice";
 import { Counter } from "components/shared/Counter/Counter";
-
 import { ColorInput } from "components/shared/ColorInput/ColorInput";
+import toolState from "store/toolState";
 
 const SettingBar = () => {
-  const dispatch = useDispatch();
-
   const onColorChange = (value: string) => {
-    dispatch(setStrokeColor(value));
+    toolState.setStrokeColor(value);
   };
 
   const onSetLineWidthClick = (value: number) => {
-    dispatch(setLineWidth(value));
+    toolState.setLineWidth(value);
   };
 
   return (

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { AuthForm } from "./AuthForm";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useAuth } from "hooks/useAuth";
 import { HOME_PAGE } from "constants/addressPages";
-import { loadingDataFromTheServerLoginUser } from "store/slices/userSlices";
 
-const Login: React.FC = () => {
-  const dispatch = useDispatch();
+import { useStores } from "hooks/useStores";
+import { observer } from "mobx-react-lite";
+
+const Login: React.FC = observer(() => {
+  const { auth } = useStores();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
 
@@ -18,10 +19,10 @@ const Login: React.FC = () => {
   });
 
   const onUserLogIn = (email: string, password: string) => {
-    dispatch(loadingDataFromTheServerLoginUser({ email, password }));
+    auth.login(email, password);
   };
 
   return <AuthForm title="sign in" onClick={onUserLogIn} />;
-};
+});
 
 export { Login };

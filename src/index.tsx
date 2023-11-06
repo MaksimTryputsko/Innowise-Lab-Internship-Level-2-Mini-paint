@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.module.scss";
-import { Provider } from "react-redux";
 import "./firebase";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "store";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "components/ThemeProvider/ThemeProvider";
+import { RootStoreContext } from "hooks/useStores";
+import RootStore from "store/rootStore";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <ThemeProvider>
-      <Provider store={store}>
+      <RootStoreContext.Provider value={new RootStore()}>
         <App />
         <Toaster
           position="top-center"
@@ -26,7 +26,7 @@ root.render(
             },
           }}
         />
-      </Provider>
+      </RootStoreContext.Provider>
     </ThemeProvider>
   </BrowserRouter>,
 );

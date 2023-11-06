@@ -1,17 +1,19 @@
 import React, { useCallback } from "react";
 import styles from "./canvas.module.scss";
-import { useDispatch } from "react-redux";
-import { setCanvas } from "store/slices/canvasSlice";
 import Brush from "tools/Brush";
-import { setTool } from "../../../store/slices/canvasSlice";
 
 import { SaveToGallery } from "components/SaveToGallery/SaveToGallery";
+import { observer } from "mobx-react-lite";
+import canvasState from "store/canvasState";
+import toolState from "store/toolState";
 
-const Canvas = () => {
-  const dispatch = useDispatch();
+const Canvas = observer(() => {
   const ref = useCallback((canvas: HTMLCanvasElement) => {
-    dispatch(setCanvas(canvas));
-    dispatch(setTool(new Brush(canvas)));
+    if (!canvas) {
+      return;
+    }
+    canvasState.setCanvas(canvas);
+    toolState.setTool(new Brush(canvas));
   }, []);
 
   return (
@@ -20,6 +22,6 @@ const Canvas = () => {
       <SaveToGallery />
     </div>
   );
-};
+});
 
 export { Canvas };

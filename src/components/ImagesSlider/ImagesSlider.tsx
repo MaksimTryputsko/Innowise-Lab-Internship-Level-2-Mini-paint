@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { loadingImages } from "store/slices/ImagesCollectionSlice";
-import styles from "./imagesSlider.module.scss";
-import { useAppSelector } from "hooks/useAppSelector";
 
-const ImagesSlider = () => {
-  const dispatch = useDispatch();
-  const { images } = useAppSelector(state => state.imagesCollection);
+import styles from "./imagesSlider.module.scss";
+import { useStores } from "hooks/useStores";
+import { observer } from "mobx-react-lite";
+
+const ImagesSlider = observer(() => {
+  const { imagesCollection } = useStores();
+  const images = imagesCollection.images;
+  const userImages = imagesCollection.userImages;
 
   useEffect(() => {
-    dispatch(loadingImages());
+    imagesCollection.loadingImages();
   }, []);
 
   if (!images.length) {
@@ -18,7 +19,7 @@ const ImagesSlider = () => {
 
   return (
     <div className={styles.wrapperForSliderImages}>
-      {images.map(image => {
+      {(!userImages.length ? images : userImages).map(image => {
         return (
           <div key={image.id} className={styles.wrapperForImage}>
             <h2>{image.email}</h2>
@@ -28,6 +29,6 @@ const ImagesSlider = () => {
       })}
     </div>
   );
-};
+});
 
 export { ImagesSlider };
