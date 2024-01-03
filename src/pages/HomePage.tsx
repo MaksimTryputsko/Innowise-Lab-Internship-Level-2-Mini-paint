@@ -17,9 +17,9 @@ const HomePage = observer(() => {
 
   return (
     <>
-      <Header />
+      <Header/>
       <UsersList />
-      <ImagesSlider />
+      <ImagesSlider/>
       <MiniPaint />
     </>
   );

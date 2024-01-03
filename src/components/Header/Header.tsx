@@ -3,7 +3,6 @@ import styles from "./header.module.scss";
 import { Button } from "components/shared/Button";
 import { useThemeContext } from "components/ThemeProvider/ThemeProvider";
 import { useStores } from "hooks/useStores";
-import { observer } from "mobx-react-lite";
 
 const Header = () => {
   const { auth } = useStores();

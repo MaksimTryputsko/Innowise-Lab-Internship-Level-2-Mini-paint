@@ -13,20 +13,22 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
-  <BrowserRouter>
-    <ThemeProvider>
-      <RootStoreContext.Provider value={new RootStore()}>
-        <App />
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            style: {
-              border: "5px solid #713200",
-              fontSize: "25px",
-            },
-          }}
-        />
-      </RootStoreContext.Provider>
-    </ThemeProvider>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <ThemeProvider>
+        <RootStoreContext.Provider value={new RootStore()}>
+          <App />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                border: "5px solid #713200",
+                fontSize: "25px",
+              },
+            }}
+          />
+        </RootStoreContext.Provider>
+      </ThemeProvider>
+    </BrowserRouter>
+  </React.StrictMode>,
 );

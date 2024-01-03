@@ -16,7 +16,7 @@ const ImagesSlider = observer(() => {
   if (!images.length) {
     return null;
   }
-
+  
   return (
     <div className={styles.wrapperForSliderImages}>
       {(!userImages.length ? images : userImages).map(image => {
